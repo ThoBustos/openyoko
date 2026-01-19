@@ -2,6 +2,29 @@
 
 A **Life Operating System** for humans who want to live intentionally, build at the edge, and compound their growth over time.
 
+---
+
+## Quick Start with Claude Code
+
+```bash
+# 1. Fork and clone this repo
+git clone https://github.com/yourusername/personal-agent-os.git
+cd personal-agent-os
+
+# 2. Run Claude Code
+claude
+
+# 3. Say the magic words
+```
+
+> **"Let's do it"**
+
+Claude will guide you through a 15-minute onboarding that creates your personalized vault, asks about your vision and projects, and sets up your first week.
+
+**[See full onboarding details](ONBOARDING.md)**
+
+---
+
 ## What Is This?
 
 Personal Agent OS is a structured framework for:
@@ -40,7 +63,12 @@ From the [swyx framework](https://www.swyx.io/):
 - **Questions > Answers** - Stay curious longer than comfortable
 - **People > Projects** - Projects end, relationships compound
 
-## Quick Start
+## Manual Setup (Alternative)
+
+If you prefer to set up manually without Claude Code:
+
+<details>
+<summary>Click to expand manual setup instructions</summary>
 
 ### 1. Fork this repo
 
@@ -70,6 +98,8 @@ Open the folder in Obsidian. You'll see the full structure ready to use.
 ### 5. Live in it
 
 Use the playbooks in [playbooks/](playbooks/) to guide your daily, weekly, and monthly rituals.
+
+</details>
 
 ## Structure Overview
 
@@ -128,7 +158,7 @@ Personal Agent OS organizes life around 10 pillars:
 - Fear & edge detection
 - Wonder scan
 
-See [playbooks/](playbooks/) for detailed guides.
+See [docs/CADENCES.md](docs/CADENCES.md) for the complete breakdown and [playbooks/](playbooks/) for step-by-step guides.
 
 ## Tags
 
@@ -157,6 +187,18 @@ This structure is designed to give AI assistants rich context:
 2. **Check `PILLARS.md`** - Life balance context
 3. **Read project `_STATE.md`** - Project-specific context
 4. **Reference `_GUIDE.md`** in each folder - Operating instructions
+
+## Documentation
+
+| Guide | Description |
+|-------|-------------|
+| [ONBOARDING.md](ONBOARDING.md) | Quick start with Claude Code |
+| [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md) | Your first week, day by day |
+| [docs/CADENCES.md](docs/CADENCES.md) | Daily, weekly, monthly rituals |
+| [docs/PHILOSOPHY.md](docs/PHILOSOPHY.md) | Why this structure works |
+| [docs/VAULT_STRUCTURE.md](docs/VAULT_STRUCTURE.md) | Folder structure explained |
+| [docs/TAGGING.md](docs/TAGGING.md) | Tag system for patterns |
+| [docs/FAQ.md](docs/FAQ.md) | Common questions |
 
 ## Contributing
 
