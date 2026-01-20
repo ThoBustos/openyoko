@@ -50,8 +50,10 @@ my-vault/
 │   ├── GLOBAL_STATE.md  # Current focus, energy, active projects
 │   ├── LIFE_VISION.md   # 5-year vision, identity word
 │   ├── PILLARS.md       # 10 life pillars with questions
+│   ├── IMPORTANT_DATES.md # Recurring dates, rituals, anniversaries
 │   ├── TODO.md          # Master cross-project to-do list
 │   └── OPS/             # System operations and rituals
+│       └── scans/       # Pulse logs and deep scan reports
 ├── 01_GOALS/            # Life → Year → Quarter cascade
 ├── 02_JOURNAL/          # Weekly/ and Monthly/ reflections
 ├── 03_PROJECTS/         # Active projects with _STATE.md each
@@ -62,8 +64,9 @@ my-vault/
 
 ### Key Files to Read
 1. **GLOBAL_STATE.md** - Always read first. Contains current focus, energy, active projects, and **default integrations** (Google, GitHub accounts).
-2. **Project _STATE.md** - Read before discussing any specific project.
-3. **_GUIDE.md** files - Each folder has operating instructions.
+2. **IMPORTANT_DATES.md** - Recurring dates, rituals, relationship maintenance. Read during scans to surface upcoming dates.
+3. **Project _STATE.md** - Read before discussing any specific project.
+4. **_GUIDE.md** files - Each folder has operating instructions.
 
 ---
 
