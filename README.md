@@ -21,8 +21,6 @@ claude
 
 Claude will guide you through a 15-minute onboarding that creates your personalized vault, asks about your vision and projects, and sets up your first week.
 
-**[See full onboarding details](ONBOARDING.md)**
-
 ---
 
 ## What Is This?
@@ -39,6 +37,8 @@ It's designed to work with:
 - **Git** for version control and history
 - **AI assistants** (Claude, etc.) that can read your vault and help you stay aligned
 
+---
+
 ## Philosophy
 
 > Structure before automation. Clarity before tools.
@@ -53,15 +53,117 @@ Most productivity systems fail because they focus on tools before thinking. Pers
 
 See [docs/PHILOSOPHY.md](docs/PHILOSOPHY.md) for the full framework.
 
-## Core Principles
+---
 
-From the [swyx framework](https://www.swyx.io/):
+## Skills (What You Can Do)
 
-- **Systems > Goals** - Build processes that make success inevitable
-- **Principles > Tactics** - Understand the why, invent the how
-- **Writing > Reading** - Processing creates value, consumption doesn't
-- **Questions > Answers** - Stay curious longer than comfortable
-- **People > Projects** - Projects end, relationships compound
+Personal Agent OS uses **skills** - predefined workflows that help you maintain your system. Run them with `/skill-name` in Claude Code.
+
+### Cadence Skills (Run Regularly)
+| Skill | When | What It Does |
+|-------|------|--------------|
+| `/onboarding` | First time | Create your vault, gather vision |
+| `/daily` | Morning/evening | Set intention, log reflection |
+| `/weekly` | Sunday | Close week, plan next week |
+| `/monthly` | 1st of month | Deep reflection, pillar scores |
+
+### Project Skills
+| Skill | When | What It Does |
+|-------|------|--------------|
+| `/new-project` | Starting something | Create project structure |
+| `/weekly-calls <project>` | End of week | Summarize project calls |
+| `/monthly-calls <project>` | End of month | Monthly call patterns |
+
+**[See full Skills Catalog](docs/SKILLS_CATALOG.md)**
+
+---
+
+## Structure Overview
+
+```
+my-vault/
+├── 00_SYSTEM/          # Your operating system - vision, pillars, principles
+│   ├── GLOBAL_STATE.md # Current focus, energy, active projects
+│   ├── LIFE_VISION.md  # 5-year vision, identity word
+│   └── PILLARS.md      # 10 life pillars
+├── 01_GOALS/           # Life goals cascading from decades to quarters
+├── 02_JOURNAL/         # Weekly docs (with daily entries) and monthly reflections
+├── 03_PROJECTS/        # Active projects with _STATE.md each
+├── 04_PEOPLE/          # Relationship notes
+├── 05_WRITING/         # Reflections, drafts, published work, ideas
+└── 06_ARCHIVE/         # Completed projects and historical contexts
+```
+
+See [docs/VAULT_STRUCTURE.md](docs/VAULT_STRUCTURE.md) for details.
+
+---
+
+## The 10 Pillars
+
+Personal Agent OS organizes life around 10 pillars:
+
+| Pillar | Question |
+|--------|----------|
+| **Body & Energy** | Is my body becoming more powerful, resilient, expressive? |
+| **Spirit & Meaning** | Do I feel connected to existence, or just executing tasks? |
+| **Mind & Clarity** | Is my thinking getting clearer, simpler, more strategic? |
+| **Love & Relationships** | Are my relationships deepening, or just continuing? |
+| **Self-Time & Joy** | When did I last feel childlike, curious, enchanted? |
+| **Creation & Craft** | What am I building that didn't exist before me? |
+| **Wealth & Leverage** | Is my life becoming more free, or more fragile? |
+| **Impact & Service** | If I disappeared, what would be missing? |
+| **Media & Personal Brand** | Is my worldview being expressed, or trapped? |
+| **Exploration & Adventure** | When did I last feel small—in a good way? |
+
+---
+
+## Information Flow
+
+### Planning (Top-Down)
+```
+LIFE_VISION.md → Year Goals → Quarter Goals → Month Plan → Weekly Plan → Daily Focus
+```
+
+### Reflection (Bottom-Up)
+```
+Daily Logs → Weekly Reflection → Monthly Reflection → Quarterly Review → Yearly Review
+```
+
+Skills enforce this cascade. If you try to run `/daily` without a weekly plan, it will redirect you to `/weekly` first.
+
+---
+
+## Reflection Cadences
+
+### Daily Compass (5-10 min)
+- Morning: Set intention, energy check
+- Evening: Capture accomplishments, gratitude
+
+### Weekly Planning (30-45 min)
+- Close last week with pillar scores
+- Set Top 3 Personal + Professional
+- Plan pillar commitments
+
+### Monthly Reflection (60-90 min)
+- Score all pillars 1-10
+- Answer 8 reflection questions
+- Review project portfolio
+
+See [docs/CADENCES.md](docs/CADENCES.md) for the complete breakdown.
+
+---
+
+## Anti-Entropy Rules
+
+The system fights rot with these rules:
+
+1. **No orphan notes** - Every note links to something
+2. **No zombie projects** - Untouched >1 month → archive or kill
+3. **No stale states** - GLOBAL_STATE.md must always be current
+4. **No context gaps** - Capture answers when Claude asks
+5. **No invisible decisions** - Log decisions with context
+
+---
 
 ## Manual Setup (Alternative)
 
@@ -101,64 +203,19 @@ Use the playbooks in [playbooks/](playbooks/) to guide your daily, weekly, and m
 
 </details>
 
-## Structure Overview
+---
 
-```
-00_SYSTEM/          # Your operating system - vision, pillars, principles
-01_GOALS/           # Life goals cascading from decades to quarters
-02_JOURNAL/         # Weekly docs (with daily entries) and monthly reflections
-03_PROJECTS/        # Active projects with state, backlog, calls, decisions
-04_PEOPLE/          # Relationship notes
-05_WRITING/         # Reflections, drafts, published work, ideas
-06_ARCHIVE/         # Completed projects and historical contexts
-```
+## Core Principles
 
-See [docs/VAULT_STRUCTURE.md](docs/VAULT_STRUCTURE.md) for details.
+From the [swyx framework](https://www.swyx.io/):
 
-## The 10 Pillars
+- **Systems > Goals** - Build processes that make success inevitable
+- **Principles > Tactics** - Understand the why, invent the how
+- **Writing > Reading** - Processing creates value, consumption doesn't
+- **Questions > Answers** - Stay curious longer than comfortable
+- **People > Projects** - Projects end, relationships compound
 
-Personal Agent OS organizes life around 10 pillars:
-
-| Pillar | Question |
-|--------|----------|
-| **Body & Energy** | Is my body becoming more powerful, resilient, expressive? |
-| **Spirit & Meaning** | Do I feel connected to existence, or just executing tasks? |
-| **Mind & Clarity** | Is my thinking getting clearer, simpler, more strategic? |
-| **Love & Relationships** | Are my relationships deepening, or just continuing? |
-| **Self-Time & Joy** | When did I last feel childlike, curious, enchanted? |
-| **Creation & Craft** | What am I building that didn't exist before me? |
-| **Wealth & Leverage** | Is my life becoming more free, or more fragile? |
-| **Impact & Service** | If I disappeared, what would be missing? |
-| **Media & Personal Brand** | Is my worldview being expressed, or trapped? |
-| **Exploration & Adventure** | When did I last feel small—in a good way? |
-
-## Reflection Cadences
-
-### Daily Compass
-- Did I move my body?
-- Did I create something?
-- Did I tell the truth?
-- Did I connect with someone?
-- Did I feel awe or gratitude?
-
-### Weekly Planning
-- Keystone focus (if one thing worked, what matters?)
-- Pillar intentions
-- One brave act
-- One joy anchor
-- One system upgrade
-
-### Monthly Reflection
-- Identity calibration
-- Energy audit
-- Truth inventory
-- Relationship scan
-- Creation review
-- Leverage check
-- Fear & edge detection
-- Wonder scan
-
-See [docs/CADENCES.md](docs/CADENCES.md) for the complete breakdown and [playbooks/](playbooks/) for step-by-step guides.
+---
 
 ## Tags
 
@@ -179,6 +236,8 @@ Tags create relations across all content:
 
 See [docs/TAGGING.md](docs/TAGGING.md) for the full system.
 
+---
+
 ## For AI Assistants
 
 This structure is designed to give AI assistants rich context:
@@ -188,17 +247,21 @@ This structure is designed to give AI assistants rich context:
 3. **Read project `_STATE.md`** - Project-specific context
 4. **Reference `_GUIDE.md`** in each folder - Operating instructions
 
+---
+
 ## Documentation
 
 | Guide | Description |
 |-------|-------------|
-| [ONBOARDING.md](ONBOARDING.md) | Quick start with Claude Code |
+| [docs/SKILLS_CATALOG.md](docs/SKILLS_CATALOG.md) | All available skills and when to use them |
 | [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md) | Your first week, day by day |
 | [docs/CADENCES.md](docs/CADENCES.md) | Daily, weekly, monthly rituals |
 | [docs/PHILOSOPHY.md](docs/PHILOSOPHY.md) | Why this structure works |
 | [docs/VAULT_STRUCTURE.md](docs/VAULT_STRUCTURE.md) | Folder structure explained |
 | [docs/TAGGING.md](docs/TAGGING.md) | Tag system for patterns |
 | [docs/FAQ.md](docs/FAQ.md) | Common questions |
+
+---
 
 ## Contributing
 

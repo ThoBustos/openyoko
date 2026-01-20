@@ -1,254 +1,232 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
 # Personal Agent OS - Claude Instructions
 
-This file contains instructions for Claude Code to guide users through setting up their Personal Agent OS.
+This is the core operating system for a personal life management vault. Claude should behave as an intelligent assistant that understands the vault structure, maintains information freshness, and helps the user live intentionally.
 
-## Trigger Phrases
+## Repository Overview
 
-When a user says any of the following, begin the onboarding flow:
+This repo (`personal-agent-os/`) is the **framework and templates**. The user's actual vault lives at `../my-vault/` as a sibling directory.
+
+**Key directories:**
+- `.claude/skills/` - Skill definitions (SKILL.md files) that define workflows
+- `templates/` - Markdown templates for vault entries
+- `docs/` - User documentation
+- `example-vault/` - Reference vault structure
+- `config/mcp/` - MCP server configuration (credentials stored outside repo)
+
+---
+
+## Philosophy
+
+> Structure before automation. Clarity before tools.
+
+Personal Agent OS organizes life around:
+- **Identity** - Who you are becoming (LIFE_VISION.md)
+- **Pillars** - What must never be neglected (PILLARS.md)
+- **Projects** - What you're building (03_PROJECTS/)
+- **Relationships** - Who matters (04_PEOPLE/)
+- **Reflection** - How you course-correct (02_JOURNAL/)
+
+The vault is the single source of truth. Claude's job is to:
+1. Keep the vault accurate and fresh
+2. Surface relevant context when helping
+3. Capture new information in the right place
+4. Maintain the integrity of the system
+
+---
+
+## Information Architecture
+
+### Vault Location
+The user's vault is at `../my-vault/` relative to this repo.
+
+### Folder Structure
+```
+my-vault/
+├── 00_SYSTEM/           # Operating system - vision, pillars, state
+│   ├── GLOBAL_STATE.md  # Current focus, energy, active projects
+│   ├── LIFE_VISION.md   # 5-year vision, identity word
+│   ├── PILLARS.md       # 10 life pillars with questions
+│   ├── TODO.md          # Master cross-project to-do list
+│   └── OPS/             # System operations and rituals
+├── 01_GOALS/            # Life → Year → Quarter cascade
+├── 02_JOURNAL/          # Weekly/ and Monthly/ reflections
+├── 03_PROJECTS/         # Active projects with _STATE.md each
+├── 04_PEOPLE/           # Relationship notes
+├── 05_WRITING/          # Daily/, Drafts/, Published/, Ideas/
+└── 06_ARCHIVE/          # Completed projects, historical context
+```
+
+### Key Files to Read
+1. **GLOBAL_STATE.md** - Always read first. Contains current focus, energy, active projects, and **default integrations** (Google, GitHub accounts).
+2. **Project _STATE.md** - Read before discussing any specific project.
+3. **_GUIDE.md** files - Each folder has operating instructions.
+
+---
+
+## Skills Available
+
+Skills are invoked with `/skill-name` or by trigger phrases. All skills are in `.claude/skills/`.
+
+### Cadence Skills (Run Regularly)
+| Skill | When | Purpose |
+|-------|------|---------|
+| `/onboarding` | First time | Create vault, gather vision |
+| `/daily` | Morning/evening | Set intention, log reflection |
+| `/weekly` | Sunday | Close week, plan next |
+| `/monthly` | 1st of month | Deep reflection, pillar scores |
+
+### Project Skills
+| Skill | When | Purpose |
+|-------|------|---------|
+| `/new-project` | Starting something | Create project structure |
+| `/weekly-calls <project>` | End of week | Summarize project calls |
+| `/monthly-calls <project>` | End of month | Monthly call aggregation |
+
+### Health Skills
+| Skill | When | Purpose |
+|-------|------|---------|
+| `/scan` | Anytime | Quick pulse check, surface what's off |
+| `/scan deep` | Weekly or when lost | Comprehensive audit with challenger coaching |
+
+### Trigger Phrases
+These phrases invoke `/onboarding`:
 - "let's do it"
 - "set up my system"
 - "get started"
 - "initialize my vault"
-- "onboard me"
-
-## Onboarding Flow
-
-### Step 1: Welcome
-
-Welcome the user to Personal Agent OS. Explain what we're about to build together:
-
-> "Welcome to Personal Agent OS! I'm going to help you set up your personal life operating system.
->
-> Together, we'll create a structured vault that helps you:
-> - Define your life vision and identity
-> - Organize around meaningful pillars (not chaotic to-do lists)
-> - Track projects with rich context
-> - Maintain important relationships
-> - Reflect at daily, weekly, and monthly cadences
->
-> I'll ask you some questions, then create your personalized vault as a sibling folder to this repo.
->
-> This takes about 10-15 minutes. Ready?"
-
-Wait for confirmation before proceeding.
-
-### Step 2: Gather Information
-
-Ask questions in this order. Use the AskUserQuestion tool for structured choices, and conversational questions for open-ended responses. Gather all information before creating any files.
-
-#### 2.1 Identity & Vision (Core)
-
-Ask these questions conversationally:
-
-1. "What does your ideal life look like 5 years from now? Paint me a picture - where are you, what are you doing, who are you with, how do you feel?"
-
-2. "What's your current energy level on a scale of 1-10? And what's your primary focus right now - is it building, recovering, exploring, or maintaining?"
-
-3. "If you could describe the person you want to become in one word, what would it be?"
-
-#### 2.2 Pillars (Customize Defaults)
-
-Present the default pillars and ask for customization:
-
-"Personal Agent OS organizes life around 10 pillars. Here are the defaults:
-
-1. **Body & Energy** - Physical health, strength, sleep, nutrition
-2. **Spirit & Meaning** - Stillness, awe, gratitude, inner honesty
-3. **Mind & Clarity** - Thinking, learning, mental hygiene
-4. **Love & Relationships** - Deep connections, family, friendships
-5. **Self-Time & Joy** - Play, solitude, pleasure without productivity
-6. **Creation & Craft** - Building, writing, mastery
-7. **Wealth & Leverage** - Income, ownership, optionality
-8. **Impact & Service** - Who you help, what you enable
-9. **Media & Personal Brand** - How your mind scales publicly
-10. **Exploration & Adventure** - Travel, novelty, perspective shifts
-
-Which of these resonate with you? Any you'd rename, remove, or add?"
-
-#### 2.3 Active Projects
-
-"What are your 1-3 most important active projects right now? For each one, tell me:
-- The project name
-- What phase it's in (starting, building, scaling, maintaining, wrapping up)
-- Who's involved (if anyone)
-- What's the biggest blocker or focus area?"
-
-#### 2.4 Key Relationships
-
-"Who are the 3-5 people most important to your current focus? This could be collaborators, mentors, partners, or family. Just first names and a brief context for each."
-
-#### 2.5 Optional Context Import
-
-"Do you have any existing documents, notes, or transcripts you'd like to import? (We can skip this for now and add them later)"
-
-### Step 3: Confirm Before Creating
-
-Summarize what you've gathered and confirm before creating the vault:
-
-"Here's what I'm going to create for you:
-
-**Your Vision:** [summary]
-**Your Word:** [their word]
-**Your Pillars:** [list, noting any customizations]
-**Your Projects:** [list with phases]
-**Your Key People:** [list]
-
-I'll create your vault at `../my-vault/` as a separate Git repository.
-
-Ready to create?"
-
-### Step 4: Create the Vault
-
-Create a sibling folder `../my-vault/` with this structure. Initialize it as a Git repo.
-
-```
-my-vault/
-├── .gitignore
-├── 00_SYSTEM/
-│   ├── _GUIDE.md
-│   ├── GLOBAL_STATE.md         ← Populated with current focus/energy
-│   ├── LIFE_VISION.md          ← Populated with their vision answers
-│   ├── PILLARS.md              ← Customized or defaults
-│   └── PRINCIPLES.md           ← Template with their word integrated
-├── 01_GOALS/
-│   ├── _GUIDE.md
-│   └── {{year}}.md             ← Seeded from vision
-├── 02_JOURNAL/
-│   ├── _GUIDE.md
-│   ├── Weekly/
-│   │   └── {{year}}-W{{week}}.md  ← Current week ready
-│   └── Monthly/
-├── 03_PROJECTS/
-│   ├── _GUIDE.md
-│   └── {{project-name}}/       ← One for each project mentioned
-│       ├── _STATE.md           ← Populated with their answers
-│       ├── _BACKLOG.md
-│       ├── Calls/
-│       ├── Decisions/
-│       └── Notes/
-├── 04_PEOPLE/
-│   ├── _GUIDE.md
-│   └── {{name}}.md             ← One for each person mentioned
-├── 05_WRITING/
-│   ├── _GUIDE.md
-│   ├── Reflections/
-│   ├── Drafts/
-│   ├── Published/
-│   └── Ideas/
-└── 06_ARCHIVE/
-    └── _GUIDE.md
-```
-
-#### File Population Guidelines
-
-**GLOBAL_STATE.md** - Include:
-- Current energy level and focus mode
-- What's most active right now
-- Today's date as "Last updated"
-
-**LIFE_VISION.md** - Include:
-- Their 5-year vision answer (formatted nicely)
-- Their one word
-- A "Future Self" section describing who they're becoming
-
-**PILLARS.md** - Include:
-- All 10 pillars (customized if they made changes)
-- Same format as the template with the monthly lens questions
-
-**{{year}}.md** in Goals - Include:
-- Goals derived from their vision
-- Organized by pillar where relevant
-- Their active projects as focus areas
-
-**Project _STATE.md files** - Include:
-- Phase they mentioned
-- Team/people involved
-- Current blockers/focus
-- Connected to relevant people notes
-
-**People {{name}}.md files** - Include:
-- Context they provided
-- Links to relevant projects
-- "Last contact" placeholder
-
-### Step 5: Initialize Git
-
-```bash
-cd ../my-vault
-git init
-git add .
-git commit -m "Initial vault setup via Personal Agent OS onboarding"
-```
-
-### Step 6: Explain the Cadences
-
-After creating the vault, explain how to use it:
-
-"Your vault is ready at `../my-vault/`! Here's how to use it:
-
-**Daily (5-10 min)**
-- Morning: Review your Top 3 priorities, set intention
-- Evening: Log energy (1-10), gratitude, and notes in your weekly doc
-
-**Weekly (30-45 min, Sunday or Monday)**
-- Create a new week doc (copy template from personal-agent-os/templates/weekly.md)
-- Set your keystone focus for the week
-- Review pillar coverage
-- Plan one brave act + one joy anchor
-
-**Monthly (60-90 min, first of month)**
-- Deep reflection using the 8 monthly questions
-- Score each pillar 1-10
-- Calibrate your identity - who are you becoming?
-
-**Quarterly (2-3 hours)**
-- Review quarter goals
-- Adjust year targets based on reality
-- Assess project portfolio
-
-**Yearly (half day)**
-- Full vision refresh
-- Archive completed projects
-- Set new year intentions
-
-See `personal-agent-os/docs/CADENCES.md` for the full breakdown."
-
-### Step 7: Point to Resources
-
-"Here are your next steps:
-
-1. **Open your vault** - Open `../my-vault/` in Obsidian
-2. **Read the guides** - Check `_GUIDE.md` in each folder
-3. **Start your week** - Your first weekly doc is ready at `02_JOURNAL/Weekly/`
-4. **Explore templates** - `personal-agent-os/templates/` has all the formats
-
-For deeper learning:
-- [Getting Started Guide](docs/GETTING_STARTED.md) - Your first week, day by day
-- [Cadences](docs/CADENCES.md) - Complete ritual breakdowns
-- [Philosophy](docs/PHILOSOPHY.md) - Why this structure works
-- [FAQ](docs/FAQ.md) - Common questions
-
-You're all set! The structure is here. Now the work is living in it."
 
 ---
 
-## Ongoing Usage
+## Session Behavior
 
-After onboarding, Claude should:
+### On Every Session Start
+1. **Read GLOBAL_STATE.md** - Understand current focus before helping
+2. **Check freshness** - If `last_updated` is stale, ask: "Your state is {N} days old. Is it still accurate?"
+3. **Note active projects** - Know what the user is working on
 
-1. **Know the vault location** - `../my-vault/` relative to this repo
-2. **Read GLOBAL_STATE.md first** - Understand current focus before helping
-3. **Check project _STATE.md** - For project-specific context
-4. **Reference _GUIDE.md files** - For how to use each section
-5. **Suggest template usage** - When creating new entries
-6. **Support reflection rituals** - Help with weekly/monthly reviews
+### During Session
+- When discussing a project → read its `_STATE.md` first
+- When mentioning a person → check if they have a note in `04_PEOPLE/`
+- When a decision is made → offer to log in project's `Decisions/` folder
+- When learning new context → capture in the relevant location
 
-## What's In Scope Now (V1)
+### On Session End
+- Ask: "Anything to update in your state?"
+- Update `last_updated` timestamp on files you modified
+- Suggest next actions if relevant
+
+### Integration Resolution (for MCP tools)
+
+When using MCP tools that require account credentials:
+1. If in project context → check project's `_STATE.md` Integrations section
+2. If not specified or no project → fall back to `GLOBAL_STATE.md` Default Integrations
+3. Never ask for accounts that are configured
+
+**Resolution order:** Project _STATE.md → GLOBAL_STATE.md → Ask user
+
+---
+
+## Staleness Thresholds
+
+| File Type | Stale After | Action |
+|-----------|-------------|--------|
+| GLOBAL_STATE.md | 3 days (early phase) → 1 week (mature) | Warn on session start |
+| Project _STATE.md | 1 week | Suggest update when discussing project |
+| TODO.md | 3 days | Highlight at session start |
+| People notes | 1 month | Suggest review if person is mentioned |
+| Goals | 1 quarter | Prompt quarterly review |
+| Vision | 1 year | Prompt yearly refresh |
+
+---
+
+## Anti-Entropy Rules
+
+The vault fights entropy. These rules prevent rot:
+
+1. **No orphan notes** - Every note links to something (project, person, or pillar)
+2. **No zombie projects** - Untouched >1 month → prompt to archive or kill
+3. **No stale states** - GLOBAL_STATE must always reflect reality
+4. **No context gaps** - If Claude asks something, capture the answer somewhere
+5. **No invisible decisions** - All significant decisions logged with context
+
+### Curation Opportunities
+Every interaction is an opportunity to improve the vault:
+- Add missing links between related notes
+- Update outdated information when discovered
+- Create person notes for frequently mentioned people
+- Log decisions as they're discussed
+- Capture insights in the right project
+
+---
+
+## Skill Cascade (Dependency Enforcement)
+
+Skills have prerequisites. If a prerequisite is missing, redirect up the cascade.
+
+```
+/daily requires:
+  └── Current week journal exists
+      └── IF MISSING → suggest /weekly first
+
+/weekly requires:
+  └── Current month plan exists
+      └── IF MISSING → suggest /monthly first
+
+/monthly requires:
+  └── Current year goals exist
+      └── IF MISSING → suggest yearly planning
+
+/new-project requires:
+  └── GLOBAL_STATE.md exists
+      └── IF MISSING → suggest /onboarding first
+```
+
+---
+
+## Information Flow
+
+### Planning Flow (Top-Down)
+```
+LIFE_VISION.md → Year Goals → Quarter Goals → Month Plan → Weekly Plan → Daily Focus
+```
+
+### Reflection Flow (Bottom-Up)
+```
+Daily Logs → Weekly Reflection → Monthly Reflection → Quarterly Review → Yearly Review
+```
+
+Both flows should be active. Planning cascades down from vision. Reflection bubbles up from daily experience.
+
+---
+
+## Templates
+
+Templates are in `personal-agent-os/templates/`:
+- `global-state.md` - GLOBAL_STATE.md with default integrations
+- `weekly.md` - Weekly journal format
+- `monthly.md` - Monthly reflection
+- `project-state.md` - Project _STATE.md with integrations
+- `person.md` - Person notes
+- `account.md` - Company/account (CRM)
+- `contact.md` - Project contact (CRM)
+- `scan-report.md` - Deep scan output format
+- `pulse-log.md` - Quick pulse log format
+
+Always reference templates when creating new entries.
+
+---
+
+## What's In Scope (V1)
 
 - Folder structure + templates
 - Manual updates via Claude
 - Obsidian-compatible markdown
 - Git-versioned history
+- Skills for cadence rituals
 
 ## Coming Later (V2+)
 
