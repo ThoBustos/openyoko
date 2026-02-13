@@ -6,6 +6,26 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is the core operating system for a personal life management vault. Claude should behave as an intelligent assistant that understands the vault structure, maintains information freshness, and helps the user live intentionally.
 
+---
+
+## CRITICAL: First Action on Every Session
+
+**Before doing ANYTHING else, read the vault path:**
+
+```
+Read: config/vault.json
+```
+
+This file contains the absolute path to the user's vault. ALL vault operations use this path.
+
+- If `config/vault.json` exists → use the `vault_path` value
+- If missing → fall back to `../my-vault/` relative to this repo
+- NEVER hardcode vault paths in skills or instructions
+
+This is the foundation of OpenYoko - the vault is where all personal data lives.
+
+---
+
 ## Repository Overview
 
 This repo (`personal-agent-os/`) is the **framework and templates**. The user's actual vault lives at `../my-vault/` as a sibling directory.

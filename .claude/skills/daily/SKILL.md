@@ -207,22 +207,36 @@ Pick ONE based on day of week:
 **6. OPEN EXPLORATION**
 - "Anything else on your mind? (decisions, people, projects, ideas)"
 
-### Day Plan Table Format
+### Day Plan Table Format (MANDATORY)
 
-The weekly journal entry should include a combined schedule table:
+**CRITICAL: Every daily entry MUST include a Day Plan table. This is not optional.**
 
-| Time | Block | What |
-|------|-------|------|
-| 09:00 → 11:00 | Deep Work | [Focus task] |
-| 11:00-11:30 | Call | [Meeting name] (Project) |
-| 11:30 → 13:00 | Deep Work | [Focus task] |
-| ... | ... | ... |
+The table has 4 columns: `Est | Block | What | Working On`
+
+| Est | Block | What | Working On |
+|-----|-------|------|------------|
+| AM | Personal | Morning routine | |
+| 09:30-10:00 | Call | Team standup (#project) | |
+| 2h | Deep Work | Build feature X | |
+| 12:00-12:30 | Break | Lunch | |
+| 1.5h | Deep Work | Review + iterate | |
+| 14:30-15:00 | Call | Client sync (#project) | |
+| 1h | Deep Work | Ship task | |
+| 18:00-19:00 | Call | External call | |
+
+**Columns:**
+- **Est**: Specific time (`12:30-13:00`) OR duration (`1h`, `1.5h`) OR period (`AM`)
+- **Block**: `Personal` | `Call` | `Deep Work` | `Break`
+- **What**: Activity name (include #project tag if relevant)
+- **Working On**: Empty initially → `✅` when done, or notes while in progress
 
 **Rules:**
-- Calls from calendar → exact times (use hyphen: 11:00-11:30)
-- Action blocks → flexible time ranges with arrow (→)
+- Calls from calendar → exact times with hyphen
+- Deep Work blocks → duration estimate
 - Include ALL calls from ALL calendars
 - Order chronologically
+- Morning: Leave "Working On" empty
+- Evening: Update with ✅ for completed items
 
 ---
 
@@ -328,21 +342,40 @@ Is this accurate? (Yes/No/Edit)
 
 Write all categorized updates:
 
-**1. Weekly Journal:**
+**1. Weekly Journal (MUST include Day Plan table):**
 ```markdown
 ### {{Day}} {{Date}}
 
-**Morning/Yesterday** (if applicable)
-- Accomplished: {{what they said}}
-- Reflections: {{learnings}}
-
-**Today/Evening**
+**Morning**
 - Energy: {{level}}/10
-- #1 Focus: {{their focus}}
-- {{Success criteria or accomplishments}}
-- Gratitude: {{if evening}}
-- Tomorrow: {{preview if evening}}
+- #1 Focus: {{focus}}
+
+**Top 3**
+- [ ] {{priority 1}}
+- [ ] {{priority 2}}
+- [ ] {{priority 3}}
+
+**Day Plan**
+
+| Est | Block | What | Working On |
+|-----|-------|------|------------|
+| ... | ... | ... | |
+
+**Notes**
+{{context or adjustments}}
+
+**Evening**
+- Energy: {{level}}/10
+- Win: {{accomplishment}}
+- Gratitude: {{gratitude}} #gratitude
 ```
+
+**When building Day Plan table:**
+- Pull ALL calls from calendar (exact times)
+- Add Deep Work blocks for Top 3 items (duration estimates)
+- Include Personal/Break blocks
+- Morning: "Working On" column empty
+- Evening: Update with ✅ for completed, notes for in-progress
 
 **2. Pillar Tracking Grid:** Update today's column
 
