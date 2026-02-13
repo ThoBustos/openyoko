@@ -272,7 +272,7 @@ Using calendar events, generate a DRAFT Day Plan table automatically:
 | 10:00-12:00 | Deep Work | [TBD - your focus] | |
 | 12:00-12:30 | Break | Lunch | |
 | 12:30-14:30 | Deep Work | [TBD] | |
-| 14:30-15:00 | Call | Client sync (LTAI) | |
+| 14:30-15:00 | Call | Client sync (#project) | |
 | 15:00-17:00 | Deep Work | [TBD] | |
 | 18:00-19:00 | Call | External call | |
 

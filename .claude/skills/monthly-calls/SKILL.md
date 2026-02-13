@@ -245,7 +245,7 @@ All relationship updates complete.
 # Acme - March 2026 Calls
 
 ## Narrative
-March marked Thomas's transition into Acme, from initial exploration calls to role definition and team integration. The month began with uncertainty about fit and scope, progressed through intensive knowledge transfer with the CEO and the incoming engineering team, and ended with a clear UX leadership mandate. The dominant shift was from "evaluating opportunity" to "building the onboarding plan."
+March marked Alex's transition into Acme, from initial exploration calls to role definition and team integration. The month began with uncertainty about fit and scope, progressed through intensive knowledge transfer with the CEO and the incoming engineering team, and ended with a clear UX leadership mandate. The dominant shift was from "evaluating opportunity" to "building the onboarding plan."
 
 ## By the Numbers
 - **Calls:** 12
@@ -254,14 +254,14 @@ March marked Thomas's transition into Acme, from initial exploration calls to ro
 - **Weeks Active:** 3
 
 ## Key Themes
-1. **Role Definition** — Clarifying Thomas's scope, title, and relationship to engineering leadership
+1. **Role Definition** — Clarifying Alex's scope, title, and relationship to engineering leadership
 2. **Team Formation** — Understanding the incoming players and how they'll work together
 3. **Product Vision** — Aligning on the "AI assistants as agents" vision and UX differentiation strategy
 
 ## Major Decisions
 | Date | Decision | Context | Status |
 |------|----------|---------|--------|
-| Mar 10 | Thomas to lead UX experience | Call with CEO | Implemented |
+| Mar 10 | Alex to lead UX experience | Call with CEO | Implemented |
 | Mar 11 | AI-first product approach | Call with Engineering Lead | Active |
 | Mar 13 | Weekly sync cadence with engineering | Call with Product Director | Pending setup |
 
