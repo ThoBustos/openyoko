@@ -30,6 +30,7 @@ venv/
 
 # Local vault config
 config/vault.json
+config/paths.json
 
 # MCP credentials (real ones - keep examples)
 config/mcp/*.json

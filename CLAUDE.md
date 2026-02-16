@@ -324,6 +324,8 @@ When checking calendars, ALWAYS check ALL Google accounts listed in GLOBAL_STATE
 
 - **Always add date** - Every note, map, or document created in the vault must have a date at the top (format: `*Date: YYYY-MM-DD*` or in frontmatter)
 - **Use consistent naming** - Files should include date prefix when relevant: `YYYY-MM-DD-topic.md`
+- **One truth per concept** - Before creating a new file, check if one already exists. Update existing files rather than creating new versions with slightly different names.
+- **Clear status markers** - Use `_CURRENT.md` index files in topic folders to point to the authoritative version of evolving documents.
 
 ---
 
@@ -336,6 +338,61 @@ The vault fights entropy. These rules prevent rot:
 3. **No stale states** - GLOBAL_STATE must always reflect reality
 4. **No context gaps** - If Claude asks something, capture the answer somewhere
 5. **No invisible decisions** - All significant decisions logged with context
+6. **No version sprawl** - When a document evolves, update in place or explicitly archive the old version. Never leave 3 files with similar names where it's unclear which is current.
+
+### The Entropy Balance
+
+Fight entropy, but don't over-engineer:
+
+**DO:**
+- Consolidate when you notice sprawl (3+ files on same topic → merge)
+- Archive superseded docs rather than leaving them alongside current ones
+- Create `_CURRENT.md` index files when a topic has multiple related docs
+- Move reference/stable docs to dedicated folders (separate from working notes)
+- Use topic-based folders for complex domains (e.g., `Workbench/` instead of scattering across `Notes/`, `Strategy/`, `Engineering/`)
+
+**DON'T:**
+- Reorganize preemptively "just in case"
+- Create elaborate folder hierarchies for simple projects
+- Spend 30 minutes organizing when 5 minutes of naming clarity would suffice
+- Force every note into a perfect taxonomy—some messiness is fine for working notes
+
+**Trigger for reorganization:** When you or Claude can't quickly answer "where is the current version of X?" — that's the signal to consolidate.
+
+### Project Folder Patterns
+
+For complex projects (many docs, multiple topics), use topic-based organization:
+
+```
+project/
+├── _STATE.md           # Overall project state (always exists)
+├── _BACKLOG.md         # Tasks and backlog (if needed)
+├── Calls/              # Meeting notes by week
+│   └── 2026-W07/
+├── TopicA/             # e.g., "Workbench/"
+│   ├── _CURRENT.md     # Points to latest authoritative docs
+│   └── [topic files]
+├── TopicB/             # e.g., "ClientX/"
+│   └── _CURRENT.md
+├── Platform/           # Reference/stable docs
+├── Strategy/           # Personal strategy docs
+├── Reports/            # Formal outputs
+├── Notes/              # Working notes (ok to be messy)
+└── Archive/            # Superseded versions
+    ├── old-notes/
+    └── old-strategy/
+```
+
+**When to create a topic folder:**
+- 3+ files about the same topic scattered across folders
+- Topic is complex enough to have specs, implementation, and multiple versions
+- You catch yourself asking "which file is the current one?"
+
+**The `_CURRENT.md` pattern:**
+- Lives at the root of topic folders
+- Contains a table pointing to the authoritative version of each doc type
+- Updated when new versions are created
+- Makes "what's current?" instantly answerable
 
 ### Curation Opportunities
 Every interaction is an opportunity to improve the vault:
@@ -344,6 +401,7 @@ Every interaction is an opportunity to improve the vault:
 - Create person notes for frequently mentioned people
 - Log decisions as they're discussed
 - Capture insights in the right project
+- Notice and fix version sprawl when you see it
 
 ---
 

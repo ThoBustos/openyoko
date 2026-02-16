@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "project-a": "/path/to/project-a",
+    "project-b": "/path/to/project-b"
+  },
+  "_comment": "Copy to paths.json and set your important project paths"
+}

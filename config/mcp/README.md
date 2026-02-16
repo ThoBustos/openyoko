@@ -26,11 +26,14 @@ Get OAuth credentials from: https://console.cloud.google.com/apis/credentials
 
 ## Current Setup
 
-| Service | MCP Server | Install |
-|---------|------------|---------|
-| Google Workspace | [taylorwilsdon/google_workspace_mcp](https://github.com/taylorwilsdon/google_workspace_mcp) | `uvx workspace-mcp` |
+| Service | MCP Server | Install | Transport |
+|---------|------------|---------|-----------|
+| Google Workspace | [taylorwilsdon/google_workspace_mcp](https://github.com/taylorwilsdon/google_workspace_mcp) | `uvx workspace-mcp` | stdio |
+| Trello | [delorenj/mcp-server-trello](https://github.com/delorenj/mcp-server-trello) | `bunx @delorenj/mcp-server-trello` | stdio |
 
-**Features**: Gmail, Drive, Calendar, Docs, Sheets, Slides, Forms, Tasks, Chat. Multi-account OAuth 2.1.
+**Google Workspace Features**: Gmail, Drive, Calendar, Docs, Sheets, Slides, Forms, Tasks, Chat. Multi-account OAuth 2.1.
+
+**Trello Features**: Boards, Lists, Cards, Checklists, Comments, Attachments. Multi-board support with dynamic switching.
 
 ## Multi-Account Usage
 
@@ -50,9 +53,11 @@ Account selection:
 
 | File | Purpose |
 |------|---------|
-| `google-credentials.example.json` | Reference for OAuth app structure |
+| `google-credentials.example.json` | Reference for Google OAuth app structure |
+| `trello.example.json` | Reference for Trello API credentials |
 
 ## Resources
 
 - [Google Workspace Setup](../../docs/mcp/google-workspace.md) - Full setup guide
+- [Trello Setup](../../docs/mcp/trello.md) - Full setup guide
 - [MCP Architecture](../../docs/mcp/ARCHITECTURE.md) - How it all fits together

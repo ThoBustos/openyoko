@@ -1,0 +1,5 @@
+{
+  "api_key": "your-trello-api-key-from-trello.com/app-key",
+  "token": "your-trello-token-from-authorization-url",
+  "_comment": "Get API key: https://trello.com/app-key | Generate token with auth URL in docs/mcp/trello.md"
+}
