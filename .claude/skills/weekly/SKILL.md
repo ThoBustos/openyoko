@@ -231,6 +231,10 @@ Don't walk through all 10 pillars asking each one. **Surface what needs attentio
 > "What specific, measurable commitments for the weak pillars this week?"
 > (e.g., "3x gym", "1x adventure", "invoice 2 clients")
 
+**MANDATORY - Always ask:**
+> "How many Read sessions and Write sessions this week?"
+> Default suggestion: 4x Read, 4x Write - distributed intelligently across the week.
+
 **For strong pillars:** "Keep doing what's working. Anything to note?"
 
 ---
@@ -364,6 +368,29 @@ Write all files in sequence:
 
 ---
 
+## Unified Week View
+
+**MANDATORY:** This table distributes work across projects and days. Include REAL milestones, not filler.
+
+| Day     | Focus          | #project1                | #project2              | #project3        | #personal                     |
+| ------- | -------------- | ------------------------ | ---------------------- | ---------------- | ----------------------------- |
+| **Mon** | {{theme}}      | {{milestone/task}}       | {{milestone/task}}     | {{milestone/task}} | {{habits: GYM, AM, Read, Write}} |
+| **Tue** | {{theme}}      | {{milestone/task}}       | {{milestone/task}}     | {{milestone/task}} | {{habits}} |
+| **Wed** | {{theme}}      | {{milestone/task}}       | {{milestone/task}}     | {{milestone/task}} | {{habits}} |
+| **Thu** | {{theme}}      | {{milestone/task}}       | {{milestone/task}}     | {{milestone/task}} | {{habits}} |
+| **Fri** | {{theme}}      | {{milestone/task}}       | {{milestone/task}}     | {{milestone/task}} | {{habits}} |
+| **Sat** | {{theme}}      | -                        | -                      | {{milestone/task}} | {{habits}} |
+| **Sun** | {{theme}}      | -                        | -                      | {{milestone/task}} | {{habits}} |
+
+**Rules for Unified Week View:**
+- Bold key deadlines/milestones: `**SHIP**`, `**LIVE**`, `**GYM**`
+- Include Read/Write sessions in #personal column
+- Use `-` for days with no project work
+- Keep entries short but meaningful (real work, not filler)
+- This table should answer: "What am I shipping each day?"
+
+---
+
 ## Keystone Focus
 
 **If only one thing worked this week, what matters most?**
@@ -390,9 +417,11 @@ Write all files in sequence:
 
 | Pillar | Commitment | M | T | W | T | F | S | S |
 |--------|------------|---|---|---|---|---|---|---|
-| Body | {{commitment}} | | | | | | | |
+| Body | {{commitment, e.g., "2x GYM"}} | | | | | | | |
 | Spirit | {{commitment}} | | | | | | | |
-| Mind | {{commitment}} | | | | | | | |
+| Mind | {{commitment, e.g., "AM protocol 7x"}} | | | | | | | |
+| Mind | Read {{N}}x | {{distribute across days}} | | | | | | |
+| Mind | Write {{N}}x | {{distribute across days}} | | | | | | |
 | Relationships | {{commitment}} | | | | | | | |
 | Joy | {{commitment}} | | | | | | | |
 | Creation | {{commitment}} | | | | | | | |
@@ -400,6 +429,8 @@ Write all files in sequence:
 | Impact | {{commitment}} | | | | | | | |
 | Media | {{commitment}} | | | | | | | |
 | Exploration | {{commitment}} | | | | | | | |
+
+**Note:** Read/Write sessions are MANDATORY in Mind pillar. Ask user for target number (e.g., 4x each) and distribute across the week intelligently.
 
 ---
 

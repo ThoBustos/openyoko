@@ -20,6 +20,28 @@ Morning planning or evening reflection ritual. Run daily to stay aligned with yo
 
 ---
 
+## Architecture: Skill vs Extension
+
+**This skill file (generic orchestrator):**
+- Flow steps and logic
+- What sources to check (TODO.md, backlogs, journal, scans)
+- How to display information (table formats, categories)
+- Processing rules (priority indicators, deduplication)
+- No personal data, account names, or vault-specific config
+
+**Extension file in vault (personal config):**
+- Which calendar IDs to check
+- Which accounts to use
+- Custom flow modifications (skip steps, add steps)
+- Personal rules (e.g., "GYM days are Tue + Thu")
+- Post-skill actions (git push, notifications)
+
+**Location:** `{{vault}}/00_SYSTEM/extensions/daily.md`
+
+This separation allows the skill to be shared/open-sourced while keeping personal config private in the vault.
+
+---
+
 ## Quick Mode Flow
 
 When `/daily quick` is invoked, run this streamlined 3-minute flow:
@@ -28,13 +50,13 @@ When `/daily quick` is invoked, run this streamlined 3-minute flow:
 Step 0   → Git commit/push (silent)
 Step 0.5 → Load extension (silent)
 Step 0.75→ Check date (silent)
-Step 1   → Read context (silent)
+Step 1   → Read context (silent) - still scan ALL task sources
 Step 2   → Gather (abbreviated):
            0. Important dates (if any)
            1. Calendar + auto-build Day Plan
            3. Today planning (#1 focus, fill [TBD])
            4. Energy level only (skip pillars)
-           7. Task count + urgent only
+           7. Task count + urgent only (from ALL sources)
 Step 3-6 → Categorize, confirm, write, verify (same)
 Step 7-8 → Complete + extension (same)
 ```
@@ -43,8 +65,13 @@ Step 7-8 → Complete + extension (same)
 - Yesterday reflection (step 2.2)
 - Grounding question (step 2.5)
 - Open exploration (step 2.6)
-- Full backlog table (step 2.7 - just shows count)
+- Full backlog table (step 2.7 - just shows count from all sources)
+- Radar section (step 2.8)
 - Pillar check-in (just energy)
+
+**What quick mode KEEPS:**
+- Scanning ALL task sources (TODO.md + backlogs + journal + scans)
+- Surfacing urgent items from any source
 
 **Use when:** Low energy, busy day, just need calendar + Top 3 locked in.
 
@@ -226,6 +253,18 @@ Read these files without outputting:
 - Note birthdays, anniversaries, deadlines, recurring events
 - These will be surfaced prominently in Step 2
 
+**CRITICAL: Collect ALL Task Sources**
+Tasks can live in multiple places. Scan ALL of these:
+
+| Source | Location | What to Extract |
+|--------|----------|-----------------|
+| Central TODO | `00_SYSTEM/TODO.md` | All `- [ ]` items |
+| Project Backlogs | `03_PROJECTS/*/_BACKLOG.md` | All `- [ ]` items per project |
+| Journal Embedded | Weekly journal "Also Today" sections | Unchecked `- [ ]` from previous days |
+| Scan Action Items | `00_SYSTEM/OPS/scans/*.md` | "Actions for Follow-Up" sections from recent scans |
+
+**Why this matters:** Tasks get created in different contexts (during dailies, scans, project work). Without scanning all sources, tasks rot and get forgotten.
+
 ### Step 2: Gather Information (Conversational)
 
 **Greeting:** Adapt based on arg (morning/evening/quick) or time
@@ -330,47 +369,108 @@ Pick ONE based on day of week:
 
 ---
 
-**7. TASK BACKLOG REVIEW (Skim Check)** *(Abbreviated in quick mode)*
+**7. TASK BACKLOG REVIEW (Comprehensive)** *(Abbreviated in quick mode)*
 
-Before finalizing the day, show a consolidated view of all open tasks so nothing is forgotten.
+Before finalizing the day, show a consolidated view of ALL open tasks from ALL sources.
 
 **Full mode display:**
 ```
-📋 **Open Tasks Overview**
+📋 **Open Tasks Overview** (from all sources)
 
 **TODO.md** ({{count}} open)
-| Priority | Task | Added | Project |
-|----------|------|-------|---------|
-| 🔴 | Task description | 3d ago | #project |
-| 🟡 | Task description | 1w ago | #personal |
-| ⚪ | Task description | 2d ago | #project |
+| Priority | Task | Project |
+|----------|------|---------|
+| 🔴 | Task description | #project |
+| 🟡 | Task description | #personal |
 
-**Project Backlogs** (if any have items)
-| Project | Open Items | Oldest |
-|---------|------------|--------|
-| #project1 | 5 | 2w ago |
-| #project2 | 2 | 3d ago |
+**Project Backlogs**
+| Project | Open Items | Key Items |
+|---------|------------|-----------|
+| #project1 | 5 | Item A, Item B |
+| #project2 | 2 | Item C |
+
+**Journal Embedded** (from previous days' "Also Today")
+| Day | Task | Status |
+|-----|------|--------|
+| Thu | Task from yesterday | Still open |
+| Wed | Task from 2 days ago | Still open |
+
+**Scan Action Items** (from recent scans)
+| Scan Date | Action | Status |
+|-----------|--------|--------|
+| 2026-02-19 | Action from deep scan | Not done |
 
 Anything here you want to tackle today or flag?
 ```
 
 **Quick mode display:**
 ```
-📋 **Tasks** ({{count}} open, {{urgent}} urgent)
+📋 **Tasks** ({{count}} total across all sources, {{urgent}} urgent)
 Any 🔴 urgent items you need to handle today?
 ```
-Only show count and ask about urgent items. Skip the full table.
+
+**Sources to scan (ALL of these):**
+1. `00_SYSTEM/TODO.md` - Central task list
+2. `03_PROJECTS/*/_BACKLOG.md` - Each active project's backlog
+3. Weekly journal "Also Today" sections - Tasks embedded in previous days that weren't completed
+4. `00_SYSTEM/OPS/scans/*.md` - "Actions for Follow-Up" from recent scans (last 7 days)
+
+**Priority indicators:**
+- 🔴 = urgent/overdue (flagged as urgent, or >7 days old)
+- 🟡 = this week (mentioned in week plan or <7 days old)
+- ⚪ = backlog (older or lower priority)
 
 **Rules:**
-- Pull from `00_SYSTEM/TODO.md` - show ALL open tasks (not checked)
-- Pull from `03_PROJECTS/*/\_BACKLOG.md` - show counts per project
-- Priority indicators: 🔴 = urgent/overdue, 🟡 = this week, ⚪ = backlog
-- Show "Added" as relative time (today, 2d ago, 1w ago)
-- Keep table scannable - truncate long task descriptions
+- Scan ALL sources listed above - don't miss embedded tasks
+- Deduplicate if same task appears in multiple places
+- Surface tasks that have been sitting for multiple days
 - Ask: "Anything here you want to tackle today or flag?"
 - If user picks something → add to today's Top 3 or Day Plan
 
-**Purpose:** Prevent tasks from rotting in backlog. Daily skim = nothing forgotten.
+**Purpose:** Zero tasks forgotten. Every source checked. Nothing rots.
+
+---
+
+**8. RADAR (Keep Visible)** *(Show in full mode, skip in quick mode)*
+
+After tasks, show items that aren't for today but should stay visible:
+
+```
+🔭 **On Your Radar** (not today, but keep visible)
+
+**This Week (from week plan)**
+- [ ] Item due later this week
+- [ ] Commitment not yet scheduled
+
+**Upcoming (next 7-14 days)**
+- [ ] Conference prep (March 18)
+- [ ] Quarterly review approaching
+
+**Stale Items (needs attention)**
+- [ ] Task sitting >2 weeks
+- [ ] Backlog item getting old
+
+**Blocked/Waiting**
+- [ ] Waiting on X from Person
+- [ ] Blocked by dependency
+
+Want to prioritize any of these for today or this week?
+```
+
+**Sources for Radar:**
+- Week journal "Project Buckets" - items not yet done
+- IMPORTANT_DATES.md - upcoming dates (7-14 days out)
+- TODO.md "Backlog" and "Waiting On" sections
+- Project _BACKLOG.md items marked as blocked
+- Any task >14 days old that hasn't been addressed
+
+**Rules:**
+- Don't overwhelm - show max 3-4 items per category
+- Focus on items that might slip through cracks
+- Ask if user wants to promote any to today's plan
+- If user says "add X to today" → include in Day Plan
+
+**Purpose:** Surface what's coming before it becomes urgent. Give user choice to prioritize.
 
 ### Day Plan Table Format (MANDATORY)
 
