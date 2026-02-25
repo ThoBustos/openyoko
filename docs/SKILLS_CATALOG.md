@@ -38,6 +38,13 @@ This document describes all available skills in Personal Agent OS. Skills are in
 │  /scan deep     │ Comprehensive audit with challenger coaching │
 │  /unload        │ End-of-day brain dump + state synthesis      │
 └─────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────┐
+│                    WRITING SKILLS                               │
+├─────────────────────────────────────────────────────────────────┤
+│  /idea          │ Capture writing idea to IDEAS.md backlog     │
+│  /new-writing   │ Create draft file from idea or topic         │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
 ### Planned / Coming soon
@@ -493,6 +500,80 @@ Scans input for:
 **Duration:** 10-15 minutes
 
 **Output:** Updates to weekly journal (Week Progress + Running Thread), TODO.md, project states, person notes
+
+---
+
+## Writing Skills
+
+### /idea
+
+**When to use:** Anytime you have a writing idea to capture.
+
+**Usage:**
+```
+/idea <idea text> [- status]
+```
+
+**Examples:**
+```
+/idea The context machine
+/idea Attention vs intention gap - developing
+/idea Full AI Native company essay - ready
+```
+
+**What it does:**
+1. Parses the idea text and optional status
+2. Adds to `05_WRITING/Ideas/IDEAS.md` in the appropriate section
+3. Seeds (default) = just a bullet
+4. Developing = bullet + origin date
+5. Ready to Draft = checkbox + origin date
+
+**Status options:**
+- (none) → Seeds section (minimal friction)
+- `- developing` → Developing section
+- `- ready` → Ready to Draft section
+
+**Output:** Idea added to IDEAS.md backlog
+
+---
+
+### /new-writing
+
+**When to use:** When starting a new writing piece from an idea or topic.
+
+**Usage:**
+```
+/new-writing <topic> [- target]
+```
+
+**Examples:**
+```
+/new-writing The AI Native Company
+/new-writing Why founders resist clarity - newsletter
+/new-writing 10x engineer setup guide - blog
+```
+
+**What it does:**
+1. Parses topic and optional target platform
+2. Creates draft file at `05_WRITING/Drafts/YYYY-MM-DD-slug-DRAFT.md`
+3. Checks if idea exists in IDEAS.md (offers to mark as started)
+4. Populates with draft template (Hook, Body, Takeaway sections)
+
+**Target options:**
+- (none) → target: draft
+- `- newsletter` → target: Newsletter
+- `- blog` → target: Blog
+- `- substack` → target: Substack
+- `- x thread` → target: X thread
+
+**Output:** Draft file created in 05_WRITING/Drafts/
+
+**Workflow:**
+```
+/idea X           → Capture to Seeds
+/idea X - ready   → Move to Ready to Draft
+/new-writing X    → Create actual draft file
+```
 
 ---
 

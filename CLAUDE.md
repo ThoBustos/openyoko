@@ -79,6 +79,7 @@ my-vault/
 │   ├── PILLARS.md       # 10 life pillars with questions
 │   ├── IMPORTANT_DATES.md # Recurring dates, rituals, anniversaries
 │   ├── TODO.md          # Master cross-project to-do list
+│   ├── ASSETS.md        # Digital assets: domains, subscriptions, accounts
 │   ├── extensions/      # Skill extensions (vault-specific customizations)
 │   └── OPS/             # System operations and rituals
 │       ├── activity-logs/  # Weekly session activity logs
@@ -87,8 +88,9 @@ my-vault/
 ├── 02_JOURNAL/          # Weekly/ and Monthly/ reflections
 ├── 03_PROJECTS/         # Active projects with _STATE.md each
 ├── 04_PEOPLE/           # Relationship notes
-├── 05_WRITING/          # Daily/, Drafts/, Published/, Ideas/
-└── 06_ARCHIVE/          # Completed projects, historical context
+├── 05_WRITING/          # Drafts/, Published/, Ideas/, Reflections/
+├── 06_READING/          # Papers/, Daily/, Highlights/, Synthesis/
+└── 07_ARCHIVE/          # Completed projects, historical context
 ```
 
 ### Key Files to Read
@@ -124,6 +126,12 @@ Skills are invoked with `/skill-name` or by trigger phrases. All skills are in `
 | `/scan` | Anytime | Quick pulse check, surface what's off |
 | `/scan deep` | Weekly or when lost | Comprehensive audit with challenger coaching |
 | `/unload` | End of day | Brain dump + state synthesis + tomorrow prep |
+
+### Writing Skills
+| Skill | When | Purpose |
+|-------|------|---------|
+| `/idea` | Anytime | Capture writing idea to IDEAS.md backlog |
+| `/new-writing` | Starting a piece | Create draft file from idea/topic |
 
 ### Trigger Phrases
 These phrases invoke `/onboarding`:
@@ -452,6 +460,7 @@ Both flows should be active. Planning cascades down from vision. Reflection bubb
 
 Templates are in `personal-agent-os/templates/`:
 - `global-state.md` - GLOBAL_STATE.md with default integrations
+- `assets.md` - Digital assets: domains, subscriptions, credentials locations
 - `weekly.md` - Weekly journal format
 - `monthly.md` - Monthly reflection
 - `project-state.md` - Project _STATE.md with integrations

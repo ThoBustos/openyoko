@@ -97,6 +97,8 @@ Open your new `my-vault/` folder in Obsidian. You're ready.
 | `/update` | Anytime | Universal quick capture |
 | `/add-task` | Anytime | Add task properly |
 | `/new-project` | Starting something | Create project structure |
+| `/idea` | Anytime | Capture writing idea |
+| `/new-writing` | Starting a piece | Create draft from idea |
 
 See [Skills Catalog](docs/SKILLS_CATALOG.md) for all skills.
 
@@ -115,8 +117,9 @@ my-vault/
 ├── 02_JOURNAL/          # Weekly and monthly reflections
 ├── 03_PROJECTS/         # Active projects
 ├── 04_PEOPLE/           # Relationship notes
-├── 05_WRITING/          # Creative work
-└── 06_ARCHIVE/          # Completed projects
+├── 05_WRITING/          # Creative work (drafts, ideas, published)
+├── 06_READING/          # Paper notes, reading logs, synthesis
+└── 07_ARCHIVE/          # Completed projects
 ```
 
 ---
@@ -177,6 +180,12 @@ Connect external services for richer functionality:
 - **Granola** - Meeting transcription ([setup guide](docs/mcp/granola.md))
 
 You create your own OAuth apps - credentials stay on your machine.
+
+---
+
+## Companion Tools
+
+- **[Reader](https://github.com/ThoBustos/reader)** - Interactive paper reading with AI chat and quizzes. Syncs notes to your vault's `06_READING/Papers/` folder. Tracks page progress and quiz scores in frontmatter.
 
 ---
 

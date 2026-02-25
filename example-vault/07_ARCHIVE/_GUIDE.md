@@ -1,4 +1,4 @@
-# 06_ARCHIVE Guide
+# 07_ARCHIVE Guide
 
 This folder contains completed projects, old contexts, and historical records.
 
