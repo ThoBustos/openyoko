@@ -50,7 +50,7 @@ Read these files:
 - `00_SYSTEM/PILLARS.md` - Pillar definitions
 - `01_GOALS/{{YYYY}}.md` - Year goals
 - `02_JOURNAL/Weekly/` - All weeks from the past month
-- `03_PROJECTS/*/_ STATE.md` - All active project states
+- `03_PROJECTS/*/_STATE.md` - All active project states
 
 Summarize what you learn about the past month.
 
@@ -169,7 +169,9 @@ Update project `_STATE.md` files if needed.
 
 Connect back to year goals and vision.
 
-**Ask:**
+**First:** Before asking the intention questions, proactively show the user their year goals (`01_GOALS/{{YYYY}}.md`) as a reminder. Present the key outcomes, quarterly targets, and any relevant Q-level goals so they can ground their monthly intentions in the bigger picture. Don't wait for the user to ask - always show year goals before asking about next month.
+
+**Then ask:**
 - "What's the theme or keystone focus for next month?"
 - "What would make next month a success?"
 - "Which 2-3 pillars need the most attention?"

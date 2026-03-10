@@ -45,13 +45,14 @@ Before running this skill, check:
 ┌──────────────────────────────────────────────────────────────────────┐
 │  1. SILENT READ         │ Load all context without output            │
 │  2. WEEK PORTRAIT       │ Pattern-oriented closing of last week      │
-│  3. PROJECT-BY-PROJECT  │ Review each project: last week → this week │
-│  4. TOP 3s              │ Synthesize from project review             │
-│  5. PILLAR COMMITMENTS  │ Focus on gaps, confirm what's working      │
-│  6. THINK BIGGER        │ Life-shaper questions for alignment        │
-│  7. FULL RECAP          │ Show everything, confirm before writing    │
-│  8. ATOMIC WRITE        │ Update all files in one pass               │
-│  9. VERIFY              │ Confirm all writes succeeded               │
+│  3. TASK TRIAGE         │ Scan unchecked tasks → roll over/drop      │
+│  4. PROJECT-BY-PROJECT  │ Review each project: last week → this week │
+│  5. TOP 3s              │ Synthesize from project review             │
+│  6. PILLAR COMMITMENTS  │ Focus on gaps, confirm what's working      │
+│  7. THINK BIGGER        │ Life-shaper questions for alignment        │
+│  8. FULL RECAP          │ Show everything, confirm before writing    │
+│  9. ATOMIC WRITE        │ Update all files in one pass               │
+│ 10. VERIFY              │ Confirm all writes succeeded               │
 └──────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -79,6 +80,8 @@ Read these files without outputting anything:
 
 **Tasks:**
 - `00_SYSTEM/TODO.md` - Current task state
+  - This file ALWAYS exists. Read it with the full vault path: `{{vault}}/00_SYSTEM/TODO.md`
+  - If your glob/search fails, read it directly by absolute path - do NOT report it as missing
 
 **Calculate:**
 - Days since each file updated
@@ -132,7 +135,41 @@ Don't ask "what happened?" — **show the patterns you found:**
 
 ---
 
-## Phase 3: Project-by-Project Review
+## Phase 3: Task Triage
+
+Scan `02_JOURNAL/Weekly/{{YYYY}}-W{{WW-1}}.md` for all unchecked `- [ ]` items across:
+- Daily Log Top 3s (each day's unchecked tasks)
+- Project Buckets section
+- Top 3 Personal / Professional checkboxes
+
+Group by project/area and present:
+
+```markdown
+## Unfinished Tasks from Week {{WW-1}}
+
+**#{{Project1}}**
+- [ ] {{task}}
+- [ ] {{task}}
+
+**#{{Project2}}**
+- [ ] {{task}}
+
+**Personal**
+- [ ] {{task}}
+```
+
+**For each group, ask:**
+> "Roll over, drop, or defer to later?"
+
+- **Roll over** → carried into this week's Project Buckets (Phase 4)
+- **Drop** → removed, no further action
+- **Defer** → logged to `00_SYSTEM/TODO.md` someday/later section
+
+**If last week journal doesn't exist or has no `[ ]` items:** skip this phase, note it.
+
+---
+
+## Phase 4: Project-by-Project Review
 
 For **each active project**, present what you know and ask what's next:
 
@@ -162,7 +199,7 @@ For **each active project**, present what you know and ask what's next:
 
 ---
 
-## Phase 4: Set Top 3s
+## Phase 5: Set Top 3s
 
 **Top 3s emerge from the project review.** Don't ask cold—synthesize:
 
@@ -200,7 +237,7 @@ Does this feel right for your personal priorities?
 
 ---
 
-## Phase 5: Pillar Commitments (Gaps Focus)
+## Phase 6: Pillar Commitments (Gaps Focus)
 
 Don't walk through all 10 pillars asking each one. **Surface what needs attention:**
 
@@ -239,7 +276,7 @@ Don't walk through all 10 pillars asking each one. **Surface what needs attentio
 
 ---
 
-## Phase 6: Think Bigger
+## Phase 7: Think Bigger
 
 This phase elevates from task management to life alignment. **Pick 2-3 questions** based on what you observed:
 
@@ -272,7 +309,7 @@ This phase elevates from task management to life alignment. **Pick 2-3 questions
 
 ---
 
-## Phase 7: Full Recap + Confirm
+## Phase 8: Full Recap + Confirm
 
 **Before writing anything, show the complete picture:**
 
@@ -345,7 +382,7 @@ This phase elevates from task management to life alignment. **Pick 2-3 questions
 
 ---
 
-## Phase 8: Atomic Write
+## Phase 9: Atomic Write
 
 Write all files in sequence:
 
@@ -571,7 +608,7 @@ Add week progress note to `02_JOURNAL/Monthly/{{YYYY}}-{{MM}}.md`:
 
 ---
 
-## Phase 9: Verify
+## Phase 10: Verify
 
 **Show complete verification:**
 

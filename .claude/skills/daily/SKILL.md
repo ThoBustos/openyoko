@@ -54,6 +54,7 @@ Step 1   → Read context (silent) - still scan ALL task sources
 Step 2   → Gather (abbreviated):
            0. Important dates (if any)
            1. Calendar + auto-build Day Plan
+           2.5. Incomplete task rollover (show list, ask which to add)
            3. Today planning (#1 focus, fill [TBD])
            4. Energy level only (skip pillars)
            7. Task count + urgent only (from ALL sources)
@@ -308,21 +309,21 @@ Using calendar events, generate a DRAFT Day Plan table automatically:
 |-----|-------|------|------------|
 | AM | Personal | Morning routine | |
 | 09:30-10:00 | Call | Team standup (#work) | |
-| 10:00-12:00 | Deep Work | [TBD - your focus] | |
-| 12:00-12:30 | Break | Lunch | |
-| 12:30-14:30 | Deep Work | [TBD] | |
 | 14:30-15:00 | Call | Client sync (#project) | |
-| 15:00-17:00 | Deep Work | [TBD] | |
 | 18:00-19:00 | Call | External call | |
+| ~2h | Deep Work | [TBD - your focus] | |
+| ~1h | Deep Work | [TBD] | |
+| ~1h | Deep Work | [TBD] | |
 
-What Deep Work blocks should you fill in?
+What should fill the Deep Work rows?
 ```
 
 **Rules for auto-draft:**
-- Calls from calendar → exact times, mark as `Call`
-- Gaps between calls → mark as `Deep Work` with [TBD]
-- Add morning `Personal` block and `Lunch` break
-- User fills in the [TBD] slots with their priorities
+- Calls from calendar → exact times (e.g., `14:30-15:00`), mark as `Call`
+- Deep Work blocks → duration estimate only (e.g., `~2h`, `30min`), **NO specific times**
+- Deep Work is a loose list of work with time estimates — NOT a rigid schedule fitted between calls
+- Add morning `Personal` block
+- User fills in the [TBD] rows with their priorities
 
 ---
 
@@ -332,6 +333,39 @@ Based on yesterday's journal entry:
 - "Any tasks that rolled over?"
 - "What got accomplished that wasn't planned?"
 - "Any reflections or learnings?"
+
+---
+
+**2.5. INCOMPLETE TASK ROLLOVER (Previous Days)**
+
+Scan ALL previous days in the current week's journal for incomplete tasks.
+
+**What to scan:**
+- `- [ ]` items in Top 3 sections
+- `- [ ]` items in "Also Today" sections
+- Deep Work rows in Day Plan without `✅` in "Working On" column
+
+**Present as a specific list:**
+```
+📋 **Incomplete from previous days:**
+
+| From | Task | Source |
+|------|------|--------|
+| Thu | Ship landing page (#project) | Also Today |
+| Wed | Client proposal (#work) | Top 3 |
+| Tue | Legal setup task (#personal) | Top 3 |
+
+Which of these should carry into today? (all / pick / none)
+```
+
+**Rules:**
+- Only show tasks still marked `- [ ]` (not completed)
+- Group by day, most recent first
+- Deduplicate — if same task appears across multiple days, show it once (earliest day)
+- Don't include items already in today's pre-filled section
+- Ask user explicitly which to add — don't auto-add
+- User can say "all", pick specific ones, or skip
+- Selected items get added as rows in the Day Plan
 
 ---
 
@@ -482,24 +516,24 @@ The table has 4 columns: `Est | Block | What | Working On`
 |-----|-------|------|------------|
 | AM | Personal | Morning routine | |
 | 09:30-10:00 | Call | Team standup (#project) | |
-| 2h | Deep Work | Build feature X | |
-| 12:00-12:30 | Break | Lunch | |
-| 1.5h | Deep Work | Review + iterate | |
 | 14:30-15:00 | Call | Client sync (#project) | |
-| 1h | Deep Work | Ship task | |
 | 18:00-19:00 | Call | External call | |
+| ~2h | Deep Work | Build feature X (#project) | |
+| ~1.5h | Deep Work | Review + iterate (#project) | |
+| 30min | Deep Work | Ship task (#project) | |
 
 **Columns:**
-- **Est**: Specific time (`12:30-13:00`) OR duration (`1h`, `1.5h`) OR period (`AM`)
+- **Est**: Specific time for calls only (`14:30-15:00`) OR duration for deep work (`~2h`, `30min`) OR period (`AM`)
 - **Block**: `Personal` | `Call` | `Deep Work` | `Break`
 - **What**: Activity name (include #project tag if relevant)
 - **Working On**: Empty initially → `✅` when done, or notes while in progress
 
 **Rules:**
-- Calls from calendar → exact times with hyphen
-- Deep Work blocks → duration estimate
+- Calls from calendar → exact times with hyphen (only block type that gets specific times)
+- Deep Work blocks → duration estimate only (e.g., `~2h`, `30min`) — NO specific times, NOT fitted between calls
+- Deep Work is a loose backlog of work with estimates, not a rigid time-blocked schedule
+- Calls are listed first (chronological), then Deep Work rows, then Personal/Break
 - Include ALL calls from ALL calendars
-- Order chronologically
 - Morning: Leave "Working On" empty
 - Evening: Update with ✅ for completed items
 
@@ -636,8 +670,9 @@ Write all categorized updates:
 ```
 
 **When building Day Plan table:**
-- Pull ALL calls from calendar (exact times)
-- Add Deep Work blocks for Top 3 items (duration estimates)
+- Calls from calendar → exact times (only block type with specific times)
+- Deep Work blocks → duration estimate only (`~2h`, `30min`) — NO times, not scheduled between calls
+- List calls first (chronological), then Deep Work rows as a loose backlog
 - Include Personal/Break blocks
 - Morning: "Working On" column empty
 - Evening: Update with ✅ for completed, notes for in-progress
