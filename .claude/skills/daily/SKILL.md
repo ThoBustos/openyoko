@@ -238,20 +238,21 @@ This runs after Step 0 auto-save. Call context from yesterday is available for r
 
 4. **Skip meetings with no summary** (title = "New note" or summary = "No summary") — save nothing.
 
-5. **Classify by project** using title + participant signals:
+5. **Classify by project** using title + participant signals configured in the vault extension:
+   - Read classification rules from `{{vault}}/00_SYSTEM/extensions/daily.md` (Granola Classification section)
+   - Each rule maps keywords (in title or participant names) → project folder
+   - Fallback: `Personal` if no rule matches
+
+   Example rule format (defined in your extension, not here):
    | Signal | Project |
    |--------|---------|
-   | "W23", "Dean", "Eliel", "Johnny", "Devan" in title/participants | `Supernal` → W23 subfolder |
-   | "standup", "all hands", "delivery planning", "Naveen", "Seb", "Tauseef" | `Supernal` → general |
-   | "lyah", "Angel", "John (Lyah)", "Namencis", "session" | `Lyah` |
-   | "LTAI", "podcast", "Abby", "guest" | `LTAI` |
+   | keywords for project A | `ProjectA` → subfolder |
+   | keywords for project B | `ProjectB` → general |
    | Personal / unclassified | `Personal` |
 
 6. **Save call notes to vault:**
-   - Supernal (general): `03_PROJECTS/Supernal/Calls/{YYYY-WXX}/{date}-{slug}.md`
-   - Supernal W23: `03_PROJECTS/Supernal/Calls/{YYYY-WXX}/{date}-w23-{slug}.md`
-   - Lyah: `03_PROJECTS/Lyah/Calls/{YYYY-WXX}/{date}-{slug}.md`
-   - LTAI: `03_PROJECTS/LTAI/Calls/{YYYY-WXX}/{date}-{slug}.md`
+   - Per-project paths are defined in your vault extension
+   - Default pattern: `03_PROJECTS/{Project}/Calls/{YYYY-WXX}/{date}-{slug}.md`
 
    **Skip duplicates:** Before writing, check if a file with the same date + slug already exists. If so, skip silently.
 
@@ -260,7 +261,7 @@ This runs after Step 0 auto-save. Call context from yesterday is available for r
    # {Title}
 
    *Date: YYYY-MM-DD*
-   *Time: HH:MM (Madrid)*
+   *Time: HH:MM (local)*
    *Participants: {names from known_participants}*
    *Source: Granola*
 
