@@ -221,7 +221,7 @@ If you want Claude to post messages:
 
 ```
 Search Slack for messages:
-- From: @naveen
+- From: @alice
 - In: #platform
 - Contains: "deployment"
 - After: 2026-01-20
@@ -450,7 +450,7 @@ cd ~/tools/slack-mcp-server && go build -o slack-mcp mcp/mcp-server.go
 
 # Search
 "Search Slack for 'deployment issue'"
-"Search Slack for messages from @naveen about API"
+"Search Slack for messages from @alice about API"
 
 # History
 "Show last 20 messages in #engineering"

@@ -44,3 +44,6 @@ docs/WRITING_IDENTITY*.md
 
 # Local agents (private, machine-specific)
 .agents/
+
+# Playwright MCP session snapshots
+.playwright-mcp/
