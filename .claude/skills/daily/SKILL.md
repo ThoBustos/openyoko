@@ -210,26 +210,25 @@ Is this accurate?"
 
 **Why:** Ensures vault is saved before starting fresh daily reflection. Prevents data loss.
 
-### Step 0.1: Pull Granola Calls from Last 2 Days (Silent)
+### Step 0.1: Pull Granola Calls from Yesterday (Silent)
 
-**Pull meeting notes from Granola for yesterday AND the day before, save to vault BEFORE the main flow.**
+**Pull yesterday's meeting notes from Granola and save to vault BEFORE the main flow.**
 
-This runs after Step 0 auto-save. Call context from the previous 2 days is available for reflection in Step 2.
+This runs after Step 0 auto-save. Call context from yesterday is available for reflection in Step 2.
 
 **Data source:** Granola MCP — use `list_meetings` + `get_meetings` tools. Do NOT read local cache files.
 
 **Process:**
 
-1. **Get date range:**
+1. **Get dates:**
    - Yesterday: `date -v-1d "+%Y-%m-%d"`
-   - Day before: `date -v-2d "+%Y-%m-%d"`
    - ISO week: `date +"%Y-W%V"` (for folder naming)
 
 2. **List meetings via MCP:**
    ```
-   list_meetings(time_range="custom", custom_start=<day-before>, custom_end=<yesterday>)
+   list_meetings(time_range="custom", custom_start=<yesterday>, custom_end=<yesterday>)
    ```
-   This returns meeting IDs and metadata for both days.
+   This returns meeting IDs and metadata for yesterday.
 
 3. **Fetch meeting details via MCP** (batch, max 10 per call):
    ```
