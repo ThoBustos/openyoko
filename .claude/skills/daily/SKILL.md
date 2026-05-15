@@ -216,7 +216,7 @@ Is this accurate?"
 
 This runs after Step 0 auto-save. Call context from yesterday is available for reflection in Step 2.
 
-**Data source:** Granola MCP — use `list_meetings` + `get_meetings` tools. Do NOT read local cache files.
+**Data source:** Granola MCP — use `list_meetings` + `get_meeting_transcript` tools. Do NOT read local cache files. Do NOT use summaries.
 
 **Process:**
 
@@ -230,13 +230,13 @@ This runs after Step 0 auto-save. Call context from yesterday is available for r
    ```
    This returns meeting IDs and metadata for yesterday.
 
-3. **Fetch meeting details via MCP** (batch, max 10 per call):
+3. **Fetch raw transcripts via MCP** (one call per meeting):
    ```
-   get_meetings(meeting_ids=[id1, id2, ...])
+   get_meeting_transcript(meeting_id=<id>)
    ```
-   Repeat for any remaining meetings if count > 10.
+   Repeat for each meeting.
 
-4. **Skip meetings with no summary** (title = "New note" or summary = "No summary") — save nothing.
+4. **Skip meetings with no transcript** (empty transcript or title = "New note") — save nothing.
 
 5. **Classify by project** using title + participant signals configured in the vault extension:
    - Read classification rules from `{{vault}}/00_SYSTEM/extensions/daily.md` (Granola Classification section)
@@ -267,9 +267,9 @@ This runs after Step 0 auto-save. Call context from yesterday is available for r
 
    ---
 
-   ## Summary
+   ## Transcript
 
-   {Use the Granola-provided summary directly. If the summary has sections, preserve them.}
+   {Raw transcript from get_meeting_transcript, preserved exactly as returned.}
 
    ---
 
