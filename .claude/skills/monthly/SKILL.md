@@ -273,7 +273,7 @@ After GLOBAL_STATE.md is updated, ask:
 
 > "Month is set. Want to continue straight into /weekly to plan this week too?"
 
-- **If yes:** Proceed directly into `/weekly`'s Phase 1 (Silent Read). Context already gathered this session (GLOBAL_STATE, LIFE_VISION, year goals, project states) doesn't need to be re-read — reuse it. Continue through the full `/weekly` flow, including its own end-of-skill cascade offer into `/daily`.
+- **If yes:** Proceed directly into `/weekly`'s Phase 1 (Silent Read). Context already gathered this session (GLOBAL_STATE, LIFE_VISION, year goals, project states) doesn't need to be re-read; reuse it. Continue through the full `/weekly` flow, including its own end-of-skill cascade offer into `/daily`.
 - **If no:** End the skill normally.
 
 ---

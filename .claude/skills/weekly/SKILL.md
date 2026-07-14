@@ -660,7 +660,7 @@ After verification is shown, ask:
 
 > "Week is set. Want to continue straight into /daily to start today?"
 
-- **If yes:** Proceed directly into `/daily`'s Step 1. Context already gathered this session (GLOBAL_STATE, active projects, today's date) doesn't need to be re-read — reuse it.
+- **If yes:** Proceed directly into `/daily`'s Step 1. Context already gathered this session (GLOBAL_STATE, active projects, today's date) doesn't need to be re-read; reuse it.
 - **If no:** End the skill normally with "Run /daily to start your week strong."
 
 ---
