@@ -48,7 +48,7 @@ When `/daily quick` is invoked, run this streamlined 3-minute flow:
 
 ```
 Step 0   → Git commit/push (silent)
-Step 0.1 → Pull Granola calls from yesterday (silent) → save to vault
+Step 0.1 → Check meeting inbox for context (silent)
 Step 0.5 → Load extension (silent)
 Step 0.75→ Check date (silent)
 Step 1   → Read context (silent) - still scan ALL task sources
@@ -65,6 +65,7 @@ Step 7-8 → Complete + extension (same)
 
 **What quick mode SKIPS:**
 - Yesterday reflection (step 2.2)
+- Daily feedback summary (step 2.3)
 - Grounding question (step 2.5)
 - Open exploration (step 2.6)
 - Full backlog table (step 2.7 - just shows count from all sources)
@@ -210,81 +211,30 @@ Is this accurate?"
 
 **Why:** Ensures vault is saved before starting fresh daily reflection. Prevents data loss.
 
-### Step 0.1: Pull Granola Calls from Yesterday (Silent)
+### Step 0.1: Check Meeting Inbox for Context (Silent)
 
-**Pull yesterday's meeting notes from Granola and save to vault BEFORE the main flow.**
+**Read meeting context for reflection — no fetching, no writing.**
 
-This runs after Step 0 auto-save. Call context from yesterday is available for reflection in Step 2.
-
-**Data source:** Granola MCP — use `list_meetings` + `get_meeting_transcript` tools. Do NOT read local cache files. Do NOT use summaries.
+Transcripts land in `{{vault}}/00_SYSTEM/OPS/granola-inbox/` automatically via the Granola Obsidian plugin sync. This step only reads what's already there — it does not call any Granola tool, classify anything, or save any files.
 
 **Process:**
 
-1. **Get dates:**
-   - Yesterday: `date -v-1d "+%Y-%m-%d"`
-   - ISO week: `date +"%Y-W%V"` (for folder naming)
+1. List files in `{{vault}}/00_SYSTEM/OPS/granola-inbox/`. Filenames are dated: `YYYY-MM-DD-{title}.md`.
 
-2. **List meetings via MCP:**
+2. **Find the last working day of transcripts:** walk backward from today's date, day by day, until you find a date with at least one file in the inbox. This is NOT always "yesterday" — if the last meetings were Friday and today is Monday, Friday is the target date. Cap the walk-back at 14 days.
+
+3. **Flag a gap:** if the found date is more than 3 days before today, surface this once at the top of Step 2:
    ```
-   list_meetings(time_range="custom", custom_start=<yesterday>, custom_end=<yesterday>)
-   ```
-   This returns meeting IDs and metadata for yesterday.
-
-3. **Fetch raw transcripts via MCP** (one call per meeting):
-   ```
-   get_meeting_transcript(meeting_id=<id>)
-   ```
-   Repeat for each meeting.
-
-4. **Skip meetings with no transcript** (empty transcript or title = "New note") — save nothing.
-
-5. **Classify by project** using title + participant signals configured in the vault extension:
-   - Read classification rules from `{{vault}}/00_SYSTEM/extensions/daily.md` (Granola Classification section)
-   - Each rule maps keywords (in title or participant names) → project folder
-   - Fallback: `Personal` if no rule matches
-
-   Example rule format (defined in your extension, not here):
-   | Signal | Project |
-   |--------|---------|
-   | keywords for project A | `ProjectA` → subfolder |
-   | keywords for project B | `ProjectB` → general |
-   | Personal / unclassified | `Personal` |
-
-6. **Save call notes to vault:**
-   - Per-project paths are defined in your vault extension
-   - Default pattern: `03_PROJECTS/{Project}/Calls/{YYYY-WXX}/{date}-{slug}.md`
-
-   **Skip duplicates:** Before writing, check if a file with the same date + slug already exists. If so, skip silently.
-
-7. **Call note format:**
-   ```markdown
-   # {Title}
-
-   *Date: YYYY-MM-DD*
-   *Time: HH:MM (local)*
-   *Participants: {names from known_participants}*
-   *Source: Granola*
-
-   ---
-
-   ## Transcript
-
-   {Raw transcript from get_meeting_transcript, preserved exactly as returned.}
-
-   ---
-
-   #{project} #granola #{meeting-type}
+   ⚠️ Last synced transcripts are from {date} ({N} days ago). Check the Granola plugin sync if that's unexpected.
    ```
 
-8. **Stage the new files** — they'll be committed with the main vault push after the daily flow completes.
+4. For each file on the found date, read its frontmatter (`title`, `attendees`) — no need to read the full transcript body unless the user asks about a specific meeting.
 
-9. **Report silently** — no output to user. But make call context available for Step 2 (yesterday reflection).
+5. Make this context (date, titles, attendees) available for Step 2 (Yesterday Reflection). Do not write, classify, or save anything.
 
-**What to do if Granola has no meetings for the range:** Skip silently.
+**If the inbox is empty or the folder doesn't exist:** skip silently, no gap warning.
 
-**What to do if MCP tool unavailable:** Skip silently, log nothing.
-
-**Why before vault push:** Call notes belong to the vault. Granola is the source; the vault is the record. Pulling before push ensures calls are versioned with the daily.
+**Why:** Capturing and saving transcripts is the plugin's job now. This step only surfaces what already landed, so reflection has meeting context without re-fetching or duplicating it.
 
 ### Step 0.5: Load Extension (Silent)
 
@@ -405,11 +355,32 @@ What should fill the Deep Work rows?
 ---
 
 **2. YESTERDAY REFLECTION (Plan vs Reality)** *(Skip in quick mode)*
-Based on yesterday's journal entry:
+If Step 0.1 found a gap (>3 days since last synced transcripts), surface the warning here first.
+
+Based on yesterday's journal entry (and meeting context from Step 0.1, if any):
 - "Yesterday you planned: [Top 3 from journal]. What actually happened?"
 - "Any tasks that rolled over?"
 - "What got accomplished that wasn't planned?"
 - "Any reflections or learnings?"
+
+---
+
+**2.3. DAILY FEEDBACK SUMMARY (Synthesized)** *(Skip in quick mode)*
+
+After the reflection above, present a short 3-line synthesis — don't ask a question, just show it:
+
+```
+📊 **Yesterday in 3 lines:**
+✅ Nailed it: {{something they did well, based on what was shared}}
+🔧 Could improve: {{one honest, specific observation}}
+🎯 Missed opportunity: {{one thing tied to an active goal or pillar that didn't get attention}}
+```
+
+**How to generate:**
+- Pull "Nailed it" and "Could improve" from yesterday's journal entry + what the user just shared in Yesterday Reflection
+- For "Missed opportunity," cross-reference `01_GOALS/{{year}}.md` and `00_SYSTEM/PILLARS.md` — find one goal or pillar area that didn't get attention yesterday
+- Keep each line one sentence, no filler
+- This is Claude's synthesis, not a question — the user can react but isn't required to respond
 
 ---
 
