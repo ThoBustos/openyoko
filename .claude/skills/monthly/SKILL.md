@@ -39,6 +39,7 @@ Before running this skill, check:
 5. Set month intentions
 6. Create month journal
 7. Update GLOBAL_STATE.md
+8. Offer to cascade into /weekly
 
 ---
 
@@ -263,6 +264,17 @@ Update with:
 - Current energy level
 - Any project changes
 - `last_updated` timestamp
+
+---
+
+## Step 9: Offer to Cascade into /weekly
+
+After GLOBAL_STATE.md is updated, ask:
+
+> "Month is set. Want to continue straight into /weekly to plan this week too?"
+
+- **If yes:** Proceed directly into `/weekly`'s Phase 1 (Silent Read). Context already gathered this session (GLOBAL_STATE, LIFE_VISION, year goals, project states) doesn't need to be re-read; reuse it. Continue through the full `/weekly` flow, including its own end-of-skill cascade offer into `/daily`.
+- **If no:** End the skill normally.
 
 ---
 
