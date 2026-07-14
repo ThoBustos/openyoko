@@ -213,22 +213,22 @@ Is this accurate?"
 
 ### Step 0.1: Check Meeting Inbox for Context (Silent)
 
-**Read meeting context for reflection — no fetching, no writing.**
+**Read meeting context for reflection. No fetching, no writing.**
 
-Transcripts land in `{{vault}}/00_SYSTEM/OPS/granola-inbox/` automatically via the Granola Obsidian plugin sync. This step only reads what's already there — it does not call any Granola tool, classify anything, or save any files.
+Transcripts land in `{{vault}}/00_SYSTEM/OPS/granola-inbox/` automatically via the Granola Obsidian plugin sync. This step only reads what's already there. It does not call any Granola tool, classify anything, or save any files.
 
 **Process:**
 
 1. List files in `{{vault}}/00_SYSTEM/OPS/granola-inbox/`. Filenames are dated: `YYYY-MM-DD-{title}.md`.
 
-2. **Find the last working day of transcripts:** walk backward from today's date, day by day, until you find a date with at least one file in the inbox. This is NOT always "yesterday" — if the last meetings were Friday and today is Monday, Friday is the target date. Cap the walk-back at 14 days.
+2. **Find the last working day of transcripts:** walk backward from today's date, day by day, until you find a date with at least one file in the inbox. This is NOT always "yesterday": if the last meetings were Friday and today is Monday, Friday is the target date. Cap the walk-back at 14 days.
 
 3. **Flag a gap:** if the found date is more than 3 days before today, surface this once at the top of Step 2:
    ```
    ⚠️ Last synced transcripts are from {date} ({N} days ago). Check the Granola plugin sync if that's unexpected.
    ```
 
-4. For each file on the found date, read its frontmatter (`title`, `attendees`) — no need to read the full transcript body unless the user asks about a specific meeting.
+4. For each file on the found date, read its frontmatter (`title`, `attendees`). No need to read the full transcript body unless the user asks about a specific meeting.
 
 5. Make this context (date, titles, attendees) available for Step 2 (Yesterday Reflection). Do not write, classify, or save anything.
 
@@ -367,7 +367,7 @@ Based on yesterday's journal entry (and meeting context from Step 0.1, if any):
 
 **2.3. DAILY FEEDBACK SUMMARY (Synthesized)** *(Skip in quick mode)*
 
-After the reflection above, present a short 3-line synthesis — don't ask a question, just show it:
+After the reflection above, present a short 3-line synthesis. Don't ask a question, just show it:
 
 ```
 📊 **Yesterday in 3 lines:**
@@ -378,9 +378,10 @@ After the reflection above, present a short 3-line synthesis — don't ask a que
 
 **How to generate:**
 - Pull "Nailed it" and "Could improve" from yesterday's journal entry + what the user just shared in Yesterday Reflection
-- For "Missed opportunity," cross-reference `01_GOALS/{{year}}.md` and `00_SYSTEM/PILLARS.md` — find one goal or pillar area that didn't get attention yesterday
+- For "Missed opportunity," cross-reference `01_GOALS/{{year}}.md` and `00_SYSTEM/PILLARS.md` to find one goal or pillar area that didn't get attention yesterday
 - Keep each line one sentence, no filler
-- This is Claude's synthesis, not a question — the user can react but isn't required to respond
+- This is Claude's synthesis, not a question. The user can react but isn't required to respond
+- **Save it:** this summary gets written into today's weekly journal entry under a `**Feedback**` section (see Step 5) so it isn't lost after the session ends
 
 ---
 
@@ -697,6 +698,11 @@ Write all categorized updates:
 - Energy: {{level}}/10
 - #1 Focus: {{focus}}
 
+**Feedback** (on yesterday, from Step 2.3; skip this section entirely if quick mode or no reflection happened)
+- ✅ Nailed it: {{from Step 2.3}}
+- 🔧 Could improve: {{from Step 2.3}}
+- 🎯 Missed opportunity: {{from Step 2.3}}
+
 **Top 3**
 - [ ] {{priority 1}}
 - [ ] {{priority 2}}
@@ -778,6 +784,7 @@ Date: {{YYYY-MM-DD}}
 ```
 ✓ Wrote to: 02_JOURNAL/Weekly/{{YYYY}}-W{{WW}}.md
   - Added {{Day}} entry (Yesterday + Today)
+  - Added Feedback section (win / improve / missed opportunity)
   - Updated pillar tracking grid
 
 ✓ Updated: 00_SYSTEM/TODO.md

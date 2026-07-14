@@ -2,7 +2,7 @@
 
 Connect Granola meeting transcriptions to Claude Code for AI-powered meeting intelligence: search transcripts, draft summaries, create follow-ups from standups, and pull meeting context into coding sessions.
 
-**Note:** This MCP is for ad-hoc querying and intelligence tasks, not for daily auto-capture. Getting transcripts into your vault automatically is handled by an Obsidian community plugin (e.g. "Granola Sync") syncing to `00_SYSTEM/OPS/granola-inbox/` — no LLM step, no MCP required for that part. `/daily` reads from that inbox folder for context; it doesn't fetch from Granola itself.
+**Note:** This MCP is for ad-hoc querying and intelligence tasks, not for daily auto-capture. Getting transcripts into your vault automatically is handled by an Obsidian community plugin (e.g. "Granola Sync") syncing to `00_SYSTEM/OPS/granola-inbox/`; no LLM step, no MCP required for that part. `/daily` reads from that inbox folder for context; it doesn't fetch from Granola itself.
 
 ## Quick Setup Checklist
 

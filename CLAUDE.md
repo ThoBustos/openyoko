@@ -102,7 +102,7 @@ my-vault/
 
 ### Meeting Transcripts
 
-Raw meeting transcripts sync automatically into `00_SYSTEM/OPS/granola-inbox/` via the Granola Obsidian plugin (no LLM step in the sync). Each file carries `title` and `attendees` in frontmatter, so meetings can be skimmed or queried directly (Obsidian search, Dataview) without opening every file. Nothing routes these into project folders automatically — `/daily` only reads them for reflection context, it does not move or classify them.
+Raw meeting transcripts sync automatically into `00_SYSTEM/OPS/granola-inbox/` via the Granola Obsidian plugin (no LLM step in the sync). Each file carries `title` and `attendees` in frontmatter, so meetings can be skimmed or queried directly (Obsidian search, Dataview) without opening every file. Nothing routes these into project folders automatically. `/daily` only reads them for reflection context; it does not move or classify them.
 
 ---
 

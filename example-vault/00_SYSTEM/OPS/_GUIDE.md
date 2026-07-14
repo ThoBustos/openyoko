@@ -1,6 +1,6 @@
 # OPS Guide
 
-System operations and rituals — mostly written to by Claude, not by you directly.
+System operations and rituals, mostly written to by Claude, not by you directly.
 
 ## Subfolders
 
@@ -12,7 +12,7 @@ System operations and rituals — mostly written to by Claude, not by you direct
 
 ## granola-inbox/ notes
 
-- No LLM step in the sync — the plugin writes transcripts directly from Granola
-- `/daily` reads this folder to surface meeting context (who was in yesterday's/last working day's calls) for reflection — it does not move, classify, or save files here
+- No LLM step in the sync; the plugin writes transcripts directly from Granola
+- `/daily` reads this folder to surface meeting context (who was in yesterday's/last working day's calls) for reflection. It does not move, classify, or save files here
 - Skim directly in Obsidian (search or Dataview on `attendees`/`title`) rather than opening each file
-- If you want transcripts routed into project folders, that's a manual step or a workflow you build yourself — not part of the core skills
+- If you want transcripts routed into project folders, that's a manual step or a workflow you build yourself, not part of the core skills
