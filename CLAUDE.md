@@ -83,7 +83,8 @@ my-vault/
 │   ├── extensions/      # Skill extensions (vault-specific customizations)
 │   └── OPS/             # System operations and rituals
 │       ├── activity-logs/  # Weekly session activity logs
-│       └── scans/       # Pulse logs and deep scan reports
+│       ├── scans/       # Pulse logs and deep scan reports
+│       └── granola-inbox/  # Raw meeting transcripts synced by the Granola Obsidian plugin (flat, dated files, attendees in frontmatter)
 ├── 01_GOALS/            # Life → Year → Quarter cascade
 ├── 02_JOURNAL/          # Weekly/ and Monthly/ reflections
 ├── 03_PROJECTS/         # Active projects with _STATE.md each
@@ -98,6 +99,10 @@ my-vault/
 2. **IMPORTANT_DATES.md** - Recurring dates, rituals, relationship maintenance. Read during scans to surface upcoming dates.
 3. **Project _STATE.md** - Read before discussing any specific project.
 4. **_GUIDE.md** files - Each folder has operating instructions.
+
+### Meeting Transcripts
+
+Raw meeting transcripts sync automatically into `00_SYSTEM/OPS/granola-inbox/` via the Granola Obsidian plugin (no LLM step in the sync). Each file carries `title` and `attendees` in frontmatter, so meetings can be skimmed or queried directly (Obsidian search, Dataview) without opening every file. Nothing routes these into project folders automatically. `/daily` only reads them for reflection context; it does not move or classify them.
 
 ---
 
