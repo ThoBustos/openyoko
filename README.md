@@ -168,6 +168,7 @@ your-projects/
 | [Custom Skills](docs/CUSTOM_SKILLS.md) | Create your own workflows |
 | [Philosophy](YOKO_IDENTITY.md) | Why OpenYoko exists |
 | [MCP Setup](docs/mcp/README.md) | Google, Linear, Notion integrations |
+| [Hermes Agent Setup](docs/HERMES_AGENT_SETUP.md) | Run Yoko on your own server, reachable from WhatsApp or Slack |
 
 ---
 
