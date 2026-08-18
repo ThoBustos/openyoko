@@ -46,7 +46,7 @@ See [Hermes Agent Setup](docs/HERMES_AGENT_SETUP.md) to run Yoko on your own ser
 - Prioritization across competing projects
 - Yearly, monthly, weekly, and daily planning
 - Tracking the pillars and priorities you care about
-- Reminders, not just answers. You need to be reminded more than you need to be taught
+- Reminders and unprompted questions. We need to be reminded more than we need to be taught
 - Compounding context across projects, so decisions improve over time instead of resetting each session
 - Remote check-ins when you're away from your laptop: reminders, status updates, quick answers
 - Running real automation, like a scheduled newsletter pipeline
