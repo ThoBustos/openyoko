@@ -40,7 +40,7 @@ See [Hermes Agent Setup](docs/HERMES_AGENT_SETUP.md) to run Yoko on your own ser
 ## What It Helps With
 
 - Coding and technical work
-- Writing feedback that's structured, not generic praise
+- Writing feedback that's structured
 - Design and strategy thinking
 - Turning meeting transcripts into notes and follow-ups
 - Prioritization across competing projects
