@@ -49,10 +49,12 @@ See [Hermes Agent Setup](docs/HERMES_AGENT_SETUP.md) to run Yoko on your own ser
 - Reminders and unprompted questions. We need to be reminded more than we need to be taught
 - Compounding context across life and projects, so we make more high-quality decisions
 - Remote check-ins when you're away from your laptop: reminders, status updates, quick answers
-- Running real automation, like a scheduled newsletter pipeline
+- Running a scheduled newsletter pipeline daily, like [AI News](https://thomasbustos.com/ainews)
 - Feedback at both levels: the granular detail and the big picture
 - Tactical feedback on calls, not just a summary
+- Feedback on interviews
 - Turning recurring problems into standing processes
+- Helping me prioritize and focus on my areas of growth and learning: what I'm reading, what I'm writing
 
 ---
 
