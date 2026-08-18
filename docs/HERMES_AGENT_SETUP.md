@@ -48,6 +48,8 @@ Choices that matter:
 - **Terminal backend**: Docker. It isolates the agent's shell and file access from the host.
 - **Egress credential firewall**: enable it. It keeps your real API keys out of the sandbox the agent runs in.
 
+By default, Hermes ships a generic identity in `~/.hermes/SOUL.md`. This file is what the agent actually is, not a cosmetic detail. Replace it. See [`templates/hermes-soul.md`](../templates/hermes-soul.md) for a starting point.
+
 ## Step 3: Choose Docker or Local
 
 Hermes can run your commands in a Docker sandbox or directly on the host.
