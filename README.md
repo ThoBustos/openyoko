@@ -42,7 +42,7 @@ See [Hermes Agent Setup](docs/HERMES_AGENT_SETUP.md) to run Yoko on your own ser
 - Coding and technical work
 - Writing feedback that's structured
 - Design and strategy thinking
-- Turning meeting transcripts into notes and follow-ups
+- Leveraging meeting transcripts as context, not just summaries. No summary slop
 - Prioritization across competing projects
 - Yearly, monthly, weekly, and daily planning
 - Tracking the pillars and priorities you care about
