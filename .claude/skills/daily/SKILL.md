@@ -53,9 +53,9 @@ Step 0.5 → Load extension (silent)
 Step 0.75→ Check date (silent)
 Step 1   → Read context (silent) - still scan ALL task sources
 Step 2   → Gather (abbreviated):
+           Week Reminder (Top 3 Pro/Perso, always shown, one line each)
            0. Important dates (if any)
-           1. Calendar + auto-build Day Plan (check previous days for rollover too, light touch)
-           2.5. Incomplete task rollover (show list, ask which to add)
+           1. Calendar + auto-build Day Plan (one combined table, all rollover auto-included, no asking which)
            3. Today planning (#1 focus grounded in Top 3 Pro/Perso, fill [TBD])
            4. Energy level only (skip pillars)
            7. Task count + urgent only (from ALL sources)
@@ -66,6 +66,8 @@ Step 7-8 → Complete + extension (same)
 **What quick mode SKIPS:**
 - Yesterday reflection (step 2.2)
 - Daily feedback summary (step 2.3)
+- Moving the Needle and Limiting Factors (too much synthesis for a quick pass)
+- Backlog Skim (use the count-only version from step 7 instead)
 - Grounding question (step 2.5)
 - Open exploration (step 2.6)
 - Full backlog table (step 2.7 - just shows count from all sources)
@@ -75,6 +77,7 @@ Step 7-8 → Complete + extension (same)
 **What quick mode KEEPS:**
 - Scanning ALL task sources (TODO.md + backlogs + journal + scans)
 - Surfacing urgent items from any source
+- The Week Reminder (Top 3 Pro/Perso) and the auto-rollover into one combined table. These are cheap and are the whole point of staying aligned, cutting them defeats the purpose even on a busy day
 
 **Use when:** Low energy, busy day, just need calendar + Top 3 locked in.
 
@@ -303,6 +306,18 @@ Tasks can live in multiple places. Scan ALL of these:
 
 ---
 
+**WEEK REMINDER (Show First, Every Time, Not Skippable)**
+
+Before anything else, a short reminder of what the week is actually for:
+```
+📌 **This Week**
+Pro: {{Top 3 Professional from the week journal, one line each}}
+Perso: {{Top 3 Personal from the week journal, one line each}}
+```
+Don't ask a question, just show it. This is the anchor everything else in the session refers back to. Being reminded of the week's real priorities every single day, without having to ask for it, is more valuable than any single day's plan being perfectly optimized.
+
+---
+
 **0. IMPORTANT DATES (Show First If Any)**
 If IMPORTANT_DATES.md had items for TODAY, surface them prominently:
 ```
@@ -326,32 +341,73 @@ Don't ask questions, just surface them so user is aware.
   - Read ALL Google accounts from GLOBAL_STATE.md "Default Integrations" table
   - For EACH account: call `get_events` for today
 
-**Auto-build draft Day Plan table:**
-Using calendar events, generate a DRAFT Day Plan table automatically:
+**Scan for rollover before drafting anything:**
+- Scan ALL previous days in the current week's journal (not just yesterday) for incomplete items: `- [ ]` in Top 3 sections, `- [ ]` in "Also Today" sections, Deep Work rows without `✅` in "Working On"
+- Deduplicate. If the same item appears across multiple days, keep it once (earliest day)
+- **Auto-include every one of these in today's draft by default. Do not ask the user to choose which ones to carry forward, and do not prune the list down.** An item only stops rolling forward once it's checked off `[x]` (done) somewhere in the weekly journal. This is deliberate: the point is never forgetting what's open, not forcing a smaller list.
+
+**Show the actual table immediately, not a prose summary:**
+The first thing the user sees for today must be the real Day Plan table (see format below), built from calendar events plus every rolled-over item, not a text recap of what's pre-filled or a question about whether the plan "stands as-is." Give them the concrete pieces so they can react to something real, not to a description of something real.
 
 ```
-📋 **Draft Day Plan** (from your calendars)
+📋 **Today's Plan**
 
 | Est | Block | What | Working On |
 |-----|-------|------|------------|
-| AM | Personal | Morning routine | |
+| ~2h | Deep Work | [rolled-over or new item] | |
+| ~1h | Deep Work | [rolled-over or new item] | |
+| 30min | Deep Work | [rolled-over or new item] | |
 | 09:30-10:00 | Call | Team standup (#work) | |
 | 14:30-15:00 | Call | Client sync (#project) | |
-| 18:00-19:00 | Call | External call | |
-| ~2h | Deep Work | [TBD - your focus] | |
-| ~1h | Deep Work | [TBD] | |
-| ~1h | Deep Work | [TBD] | |
+| AM | Personal | Morning routine | |
 
-What should fill the Deep Work rows?
+Anything to add, drop, or reorder before we lock today's focus?
 ```
 
-**Rules for auto-draft:**
+**Rules for the draft:**
+- One combined table. Do not split into separate Calls / Deep Work / Personal tables, the user needs everything in one place to make informed decisions
+- Deep Work rows come first (with time estimates), then Calls (chronological, exact times), then Personal/Break
 - Calls from calendar → exact times (e.g., `14:30-15:00`), mark as `Call`
-- Deep Work blocks → duration estimate only (e.g., `~2h`, `30min`), **NO specific times**
-- Deep Work is a loose list of work with time estimates — NOT a rigid schedule fitted between calls
+- Deep Work blocks → duration estimate only (e.g., `~2h`, `30min`), **NO specific times**. It's a loose backlog, not a rigid schedule fitted between calls
+- It doesn't matter if the estimated hours don't fit in the day. Include everything that's open, let the user decide what actually gets touched
 - Add morning `Personal` block
-- Before finalizing the draft, check previous days in the current week's journal for anything unfinished worth carrying in (see 2.5), and ask lightly, e.g. "X from Tuesday is still open, want it in today's deep work?"
-- User fills in the [TBD] rows with their priorities
+
+---
+
+**BACKLOG SKIM (Compact, Every Day)**
+
+Right after the day plan, a short skim of what's open elsewhere so nothing has to be hunted for:
+```
+📋 **Backlog Skim**
+- #project1: 3 open (name the 1-2 most relevant)
+- #project2: 2 open
+- Waiting on: {{anyone/anything blocking}}
+```
+Keep this to a handful of lines, this is a skim not the full review (see step 7 for the comprehensive version later in the flow). Don't ask a question here, just surface it.
+
+---
+
+**MOVING THE NEEDLE (Proactive, Every Day)**
+
+Without being asked, offer 2-3 concrete recommendations for what would actually move things forward today or this week, each with a one-line reason:
+```
+🎯 **Moving the needle**
+- {{recommendation}}. Why: {{one line}}
+- {{recommendation}}. Why: {{one line}}
+```
+Ground these in the week's Top 3 and whatever is actually stalling (see Limiting Factors below), not generic productivity advice.
+
+---
+
+**LIMITING FACTORS (Proactive, Every Day)**
+
+Without being asked, name what's currently constraining progress, split by effort:
+```
+⚠️ **Limiting factors**
+- Quick win: {{something small that unblocks something bigger}}
+- Longer effort: {{something that needs sustained time, name it so it isn't a surprise later}}
+```
+This is about being reminded of what's actually in the way, not about being taught a framework. Keep it to what's real and current, pulled from the week journal, TODO.md, and anything mentioned in the last few days.
 
 ---
 
@@ -386,48 +442,21 @@ After the reflection above, present a short 3-line synthesis. Don't ask a questi
 
 ---
 
-**2.5. INCOMPLETE TASK ROLLOVER (Previous Days)**
+**2.5. INCOMPLETE TASK ROLLOVER (already handled)**
 
-Scan ALL previous days in the current week's journal for incomplete tasks.
-
-**What to scan:**
-- `- [ ]` items in Top 3 sections
-- `- [ ]` items in "Also Today" sections
-- Deep Work rows in Day Plan without `✅` in "Working On" column
-
-**Present as a specific list:**
-```
-📋 **Incomplete from previous days:**
-
-| From | Task | Source |
-|------|------|--------|
-| Thu | Ship landing page (#project) | Also Today |
-| Wed | Client proposal (#work) | Top 3 |
-| Tue | Legal setup task (#personal) | Top 3 |
-
-Which of these should carry into today? (all / pick / none)
-```
-
-**Rules:**
-- Only show tasks still marked `- [ ]` (not completed)
-- Group by day, most recent first
-- Deduplicate — if same task appears across multiple days, show it once (earliest day)
-- Don't include items already in today's pre-filled section
-- Ask user explicitly which to add — don't auto-add, and keep the ask light, this is a simple carry-forward, not a forced prioritization exercise
-- User can say "all", pick specific ones, or skip
-- Selected items get added as rows in the Day Plan
-- It's fine if not everything fits in a day. Track it, keep rolling it forward, don't force a single "the one thing" answer
+The rollover scan and auto-include already happened when the Day Plan was drafted in Step 1. Nothing further to ask here. If new incomplete items surface during Yesterday Reflection (2) that weren't already caught, add them to the table now, same auto-include rule, no pruning.
 
 ---
 
 **3. TODAY PLANNING**
-- "What's your #1 focus for today?" Ground it in the week's Top 3 Professional / Top 3 Personal, not a cold question
+- If the pre-filled #1 focus (from the week's plan or a prior day) gets rejected, resolve the real one immediately, before building out anything else in the day. Don't tack "what's your actual focus?" onto the end of a long message
+- "What's your #1 focus for today?" Ground it in the week's Top 3 Professional / Top 3 Personal (already shown in the Week Reminder), not a cold question
 - "What would make today successful?"
 - "Want to add any deep work blocks?" Light touch, doesn't matter if it won't all fit today
 - Fill in [TBD] slots in Day Plan table
 
 **Show Context:**
-- Surface Top 3s (Personal + Professional from week journal), this is the anchor for today's focus
+- Top 3s were already shown in the Week Reminder at the top, no need to repeat in full, just reference them
 - Surface key tasks from TODO.md (urgent, related to Top 3)
 - Note pillar commitments for the week
 
@@ -564,15 +593,17 @@ Want to prioritize any of these for today or this week?
 
 The table has 4 columns: `Est | Block | What | Working On`
 
+**One combined table only. Never split Calls/Deep Work/Personal into separate tables.** The user needs every piece of the day visible together to make informed decisions.
+
 | Est | Block | What | Working On |
 |-----|-------|------|------------|
+| ~2h | Deep Work | Build feature X (#project) | |
+| ~1.5h | Deep Work | Review + iterate (#project) | |
+| 30min | Deep Work | Ship task (#project) | |
 | AM | Personal | Morning routine | |
 | 09:30-10:00 | Call | Team standup (#project) | |
 | 14:30-15:00 | Call | Client sync (#project) | |
 | 18:00-19:00 | Call | External call | |
-| ~2h | Deep Work | Build feature X (#project) | |
-| ~1.5h | Deep Work | Review + iterate (#project) | |
-| 30min | Deep Work | Ship task (#project) | |
 
 **Columns:**
 - **Est**: Specific time for calls only (`14:30-15:00`) OR duration for deep work (`~2h`, `30min`) OR period (`AM`)
@@ -581,10 +612,9 @@ The table has 4 columns: `Est | Block | What | Working On`
 - **Working On**: Empty initially → `✅` when done, or notes while in progress
 
 **Rules:**
-- Calls from calendar → exact times with hyphen (only block type that gets specific times)
-- Deep Work blocks → duration estimate only (e.g., `~2h`, `30min`) — NO specific times, NOT fitted between calls
-- Deep Work is a loose backlog of work with estimates, not a rigid time-blocked schedule
-- Calls are listed first (chronological), then Deep Work rows, then Personal/Break
+- Deep Work rows come first, each with a duration estimate (e.g., `~2h`, `30min`). NO specific times, NOT fitted between calls, it's a loose backlog
+- Then Personal/Break, then Calls from calendar with exact times (only block type that gets specific times)
+- Include every rolled-over item regardless of whether the estimated hours fit in the day. It's fine if they don't, track it and keep rolling forward rather than pruning the list to fit
 - Include ALL calls from ALL calendars
 - Morning: Leave "Working On" empty
 - Evening: Update with ✅ for completed items
@@ -727,10 +757,9 @@ Write all categorized updates:
 ```
 
 **When building Day Plan table:**
-- Calls from calendar → exact times (only block type with specific times)
-- Deep Work blocks → duration estimate only (`~2h`, `30min`) — NO times, not scheduled between calls
-- List calls first (chronological), then Deep Work rows as a loose backlog
-- Include Personal/Break blocks
+- One combined table, never split by type
+- Deep Work rows first (duration estimate only, `~2h`, `30min`, no times, not scheduled between calls), then Personal/Break, then Calls (chronological, exact times)
+- Include every rolled-over item even if the estimated hours don't fit the day
 - Morning: "Working On" column empty
 - Evening: Update with ✅ for completed, notes for in-progress
 
