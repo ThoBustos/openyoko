@@ -21,7 +21,38 @@ OpenYoko is a framework for organizing your life around what matters:
 - **Projects** → What you're actively building
 - **Reflection** → How you course-correct (daily, weekly, monthly)
 
-It uses plain markdown files, works with Obsidian (or any text editor), and integrates with Claude Code for intelligent assistance.
+It uses plain markdown files, works with Obsidian (or any text editor), and runs through any agent harness: Claude Code, Codex, Hermes, or others.
+
+---
+
+## Where Yoko Runs
+
+Yoko isn't tied to one tool. It's a portable set of conventions, defined by `CLAUDE.md`, the skills, and a shared vault, that runs inside any agent harness you point at it.
+
+Today that means Claude Code and Codex for local work, and Hermes for remote work. Whichever harness you use, it reads the same vault and follows the same rules.
+
+The constant across every harness is the vault itself: `my-vault`, a private repo synced independently by each session. Switch tools and the context comes with you.
+
+See [Hermes Agent Setup](docs/HERMES_AGENT_SETUP.md) to run Yoko on your own server, reachable from WhatsApp or Slack when you're away from your laptop.
+
+---
+
+## What It Helps With
+
+- Coding and technical work
+- Writing feedback that's structured, not generic praise
+- Design and strategy thinking
+- Turning meeting transcripts into notes and follow-ups
+- Prioritization across competing projects
+- Yearly, monthly, weekly, and daily planning
+- Tracking the pillars and priorities you care about
+- Reminders, not just answers. You need to be reminded more than you need to be taught
+- Compounding context across projects, so decisions improve over time instead of resetting each session
+- Remote check-ins when you're away from your laptop: reminders, status updates, quick answers
+- Running real automation, like a scheduled newsletter pipeline
+- Feedback at both levels: the granular detail and the big picture
+- Tactical feedback on calls, not just a summary
+- Turning recurring problems into standing processes
 
 ---
 

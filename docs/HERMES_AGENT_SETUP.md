@@ -1,6 +1,8 @@
 # Hermes Agent Setup
 
-Yoko is Personal Agent OS running through Hermes, an open source agent by Nous Research. This guide sets up Hermes on your own server and connects it to your vault.
+Yoko runs in any agent harness, not just one. This guide covers Hermes, an open source agent by Nous Research, as the harness for running Yoko remotely and unattended, on your own server.
+
+Use this when you want Yoko reachable from WhatsApp or Slack, or when you want cron jobs and automation running even with your laptop closed. For local, interactive work, run Yoko through Claude Code or Codex instead. Same vault, same conventions, different harness.
 
 You get an agent that reads your vault, runs your daily cadence, and answers you on WhatsApp or Slack. It runs on a machine you control, not a third party's cloud.
 
