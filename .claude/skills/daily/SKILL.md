@@ -55,6 +55,7 @@ Step 1   → Read context (silent) - still scan ALL task sources
 Step 2   → Gather (abbreviated):
            0. Important dates (if any)
            1. Calendar + auto-build Day Plan
+           2.4. Keystone check (one line, not skipped, see below)
            2.5. Incomplete task rollover (show list, ask which to add)
            3. Today planning (#1 focus, fill [TBD])
            4. Energy level only (skip pillars)
@@ -75,6 +76,7 @@ Step 7-8 → Complete + extension (same)
 **What quick mode KEEPS:**
 - Scanning ALL task sources (TODO.md + backlogs + journal + scans)
 - Surfacing urgent items from any source
+- The keystone check (step 2.4). It's one line and it's the whole point of staying aligned with the week, cutting it defeats the purpose of the ritual even on a busy day
 
 **Use when:** Low energy, busy day, just need calendar + Top 3 locked in.
 
@@ -385,6 +387,18 @@ After the reflection above, present a short 3-line synthesis. Don't ask a questi
 
 ---
 
+**2.4. KEYSTONE CHECK (Not Skippable, Even in Quick Mode)**
+
+Before touching rollover or today's plan, check the current week's keystone (the week journal's "Keystone Focus" section, or equivalent single most-important-thing for the week).
+
+- If the keystone is still undone and it's day 2 or later of the week, say so directly: "The week's keystone ([keystone]) is still undone after [N] day(s). That's what should anchor today, not whatever rolled from yesterday."
+- Carry this forward into Step 3 (Today Planning): today's #1 focus should default to the keystone unless the user explicitly deprioritizes it in favor of something else.
+- This check is cheap (one line) and should run even in quick mode. It is the difference between reacting to whatever is loudest (calendar, rollover) and actually moving the week's real priority.
+
+**Why:** A daily planning ritual that never re-anchors against the week's actual keystone will happily help the user have a productive-feeling day while the one thing that mattered most quietly slips again. This is the same failure mode as letting rollover volume become the plan (see 2.5). Surface it, don't let it hide.
+
+---
+
 **2.5. INCOMPLETE TASK ROLLOVER (Previous Days)**
 
 Scan ALL previous days in the current week's journal for incomplete tasks.
@@ -415,11 +429,13 @@ Which of these should carry into today? (all / pick / none)
 - Ask user explicitly which to add — don't auto-add
 - User can say "all", pick specific ones, or skip
 - Selected items get added as rows in the Day Plan
+- **If 3 or more items are rolling over from the prior day, don't just re-list them as options.** Ask directly: "[N] items rolled over from yesterday. What's the ONE thing that can't roll again today?" A long rollover list is a signal to force a priority call, not to hand the user a bigger menu.
 
 ---
 
 **3. TODAY PLANNING**
-- "What's your #1 focus for today?"
+- Lead with the keystone check from 2.4, don't let calendar conflicts or rollover volume silently become the plan by default
+- "What's your #1 focus for today?" Propose the week's keystone as the default answer if it's still undone
 - "What would make today successful?"
 - Fill in [TBD] slots in Day Plan table
 
@@ -861,3 +877,4 @@ Use these sparingly to deepen reflection:
 - The goal is zero context leaks - everything mentioned should land somewhere
 - If they miss a day, don't guilt - just pick up where they are
 - **Critical:** Always show the FULL recap before writing - user must see all files being updated
+- **Critical:** Don't let calendar conflicts or a long rollover list quietly become "the plan." Run the keystone check (2.4) first, and if 3+ items rolled over, force the one un-rollable priority question (2.5) instead of just re-listing everything
