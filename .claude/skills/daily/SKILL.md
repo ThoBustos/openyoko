@@ -2,6 +2,8 @@
 
 Morning planning or evening reflection ritual. Run daily to stay aligned with your weekly intentions.
 
+**Core philosophy: be reminded, not taught.** Show the real, concrete pieces the day is built from (the week's Top 3, the actual table, what's open) so the user can make their own informed call. Don't gate that behind clarifying questions, don't force a single priority, don't summarize in prose what could just be shown.
+
 ## Usage
 
 ```
@@ -354,33 +356,33 @@ The first thing the user sees for today must be the real Day Plan table (see for
 
 | Est | Block | What | Working On |
 |-----|-------|------|------------|
+| AM | Personal | Morning routine | |
 | ~2h | Deep Work | [rolled-over or new item] | |
 | ~1h | Deep Work | [rolled-over or new item] | |
 | 30min | Deep Work | [rolled-over or new item] | |
 | 09:30-10:00 | Call | Team standup (#work) | |
 | 14:30-15:00 | Call | Client sync (#project) | |
-| AM | Personal | Morning routine | |
 
 Anything to add, drop, or reorder before we lock today's focus?
 ```
 
 **Rules for the draft:**
 - One combined table. Do not split into separate Calls / Deep Work / Personal tables, the user needs everything in one place to make informed decisions
-- Deep Work rows come first (with time estimates), then Calls (chronological, exact times), then Personal/Break
+- Morning routine (Personal) goes at the very top of the table, it's the first thing of the day
+- Then Deep Work rows (with time estimates), then Calls (chronological, exact times), then any remaining Personal/Break
 - Calls from calendar → exact times (e.g., `14:30-15:00`), mark as `Call`
 - Deep Work blocks → duration estimate only (e.g., `~2h`, `30min`), **NO specific times**. It's a loose backlog, not a rigid schedule fitted between calls
 - It doesn't matter if the estimated hours don't fit in the day. Include everything that's open, let the user decide what actually gets touched
-- Add morning `Personal` block
 
 ---
 
 **BACKLOG SKIM (Compact, Every Day)**
 
-Right after the day plan, a short skim of what's open elsewhere so nothing has to be hunted for:
+Right after the day plan, a short skim of what's open elsewhere so nothing has to be hunted for. Name enough items per project for real visibility, not just the top 1-2, this is meant to be skimmable, not a teaser:
 ```
 📋 **Backlog Skim**
-- #project1: 3 open (name the 1-2 most relevant)
-- #project2: 2 open
+- #project1: 5 open (name 3-4 of them, not just the top 1-2)
+- #project2: 2 open (name them)
 - Waiting on: {{anyone/anything blocking}}
 ```
 Keep this to a handful of lines, this is a skim not the full review (see step 7 for the comprehensive version later in the flow). Don't ask a question here, just surface it.
@@ -597,10 +599,10 @@ The table has 4 columns: `Est | Block | What | Working On`
 
 | Est | Block | What | Working On |
 |-----|-------|------|------------|
+| AM | Personal | Morning routine | |
 | ~2h | Deep Work | Build feature X (#project) | |
 | ~1.5h | Deep Work | Review + iterate (#project) | |
 | 30min | Deep Work | Ship task (#project) | |
-| AM | Personal | Morning routine | |
 | 09:30-10:00 | Call | Team standup (#project) | |
 | 14:30-15:00 | Call | Client sync (#project) | |
 | 18:00-19:00 | Call | External call | |
@@ -612,8 +614,9 @@ The table has 4 columns: `Est | Block | What | Working On`
 - **Working On**: Empty initially → `✅` when done, or notes while in progress
 
 **Rules:**
-- Deep Work rows come first, each with a duration estimate (e.g., `~2h`, `30min`). NO specific times, NOT fitted between calls, it's a loose backlog
-- Then Personal/Break, then Calls from calendar with exact times (only block type that gets specific times)
+- Morning routine (Personal) goes at the very top of the table, it's the first thing of the day
+- Then Deep Work rows, each with a duration estimate (e.g., `~2h`, `30min`). NO specific times, NOT fitted between calls, it's a loose backlog
+- Then Calls from calendar with exact times (only block type that gets specific times), then any remaining Personal/Break
 - Include every rolled-over item regardless of whether the estimated hours fit in the day. It's fine if they don't, track it and keep rolling forward rather than pruning the list to fit
 - Include ALL calls from ALL calendars
 - Morning: Leave "Working On" empty
@@ -758,7 +761,7 @@ Write all categorized updates:
 
 **When building Day Plan table:**
 - One combined table, never split by type
-- Deep Work rows first (duration estimate only, `~2h`, `30min`, no times, not scheduled between calls), then Personal/Break, then Calls (chronological, exact times)
+- Morning routine (Personal) first, then Deep Work rows (duration estimate only, `~2h`, `30min`, no times, not scheduled between calls), then Calls (chronological, exact times), then any remaining Personal/Break
 - Include every rolled-over item even if the estimated hours don't fit the day
 - Morning: "Working On" column empty
 - Evening: Update with ✅ for completed, notes for in-progress
