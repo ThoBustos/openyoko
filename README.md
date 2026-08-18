@@ -21,7 +21,40 @@ OpenYoko is a framework for organizing your life around what matters:
 - **Projects** → What you're actively building
 - **Reflection** → How you course-correct (daily, weekly, monthly)
 
-It uses plain markdown files, works with Obsidian (or any text editor), and integrates with Claude Code for intelligent assistance.
+It uses plain markdown files, works with Obsidian (or any text editor), and runs through any agent harness: Claude Code, Codex, Hermes, or others.
+
+---
+
+## Where Yoko Runs
+
+Yoko isn't tied to one tool. It's a portable set of conventions, defined by `CLAUDE.md`, the skills, and a shared vault, that runs inside any agent harness you point at it.
+
+Today that means Claude Code and Codex for local work, and Hermes for remote work. Whichever harness you use, it reads the same vault and follows the same rules.
+
+The constant across every harness is the vault itself: `my-vault`, a private repo synced independently by each session. Switch tools and the context comes with you.
+
+See [Hermes Agent Setup](docs/HERMES_AGENT_SETUP.md) to run Yoko on your own server, reachable from WhatsApp or Slack when you're away from your laptop.
+
+---
+
+## What It Helps With
+
+- Coding and technical work
+- Writing feedback that's structured
+- Design and strategy thinking
+- Leveraging meeting transcripts as context, not just summaries. No summary slop
+- Prioritization across competing projects
+- Yearly, monthly, weekly, and daily planning
+- Tracking the pillars and priorities you care about
+- Reminders and unprompted questions. We need to be reminded more than we need to be taught
+- Compounding context across life and projects, so we make more high-quality decisions
+- Remote check-ins when you're away from your laptop: reminders, status updates, quick answers
+- Running a scheduled newsletter pipeline daily, like [AI News](https://thomasbustos.com/ainews)
+- Feedback at both levels: the granular detail and the big picture
+- Tactical feedback on calls, not just a summary
+- Feedback on interviews
+- Turning recurring problems into standing processes
+- Helping me prioritize and focus on my areas of growth and learning: what I'm reading, what I'm writing
 
 ---
 
@@ -168,6 +201,7 @@ your-projects/
 | [Custom Skills](docs/CUSTOM_SKILLS.md) | Create your own workflows |
 | [Philosophy](YOKO_IDENTITY.md) | Why OpenYoko exists |
 | [MCP Setup](docs/mcp/README.md) | Google, Linear, Notion integrations |
+| [Hermes Agent Setup](docs/HERMES_AGENT_SETUP.md) | Run Yoko on your own server, reachable from WhatsApp or Slack |
 
 ---
 
