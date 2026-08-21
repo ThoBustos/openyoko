@@ -212,6 +212,12 @@ In project `_STATE.md`:
 2. Update it: `claude mcp remove slack -s user && claude mcp add slack -e SLACK_MCP_XOXB_TOKEN=xoxb-new-token -e SLACK_MCP_ADD_MESSAGE_TOOL=false -- npx -y slack-mcp-server`
 3. Restart Claude Code
 
+### Changed the config (token, `SLACK_MCP_ADD_MESSAGE_TOOL`, etc.) but nothing happened
+
+**Cause:** `claude mcp add`/`remove` only edits `~/.claude.json`. The MCP server already running for this session was spawned once at session start with the old env baked in, editing the file doesn't touch that live process. `claude mcp get slack` reads the file, so it looks updated even though the running process isn't.
+
+**Fix:** Run `/mcp`, select `slack`, and reconnect, that respawns just this one server with the new env. A full Claude Code restart also works but isn't required.
+
 ### "Channel not found"
 
 **Cause:** Using channel name instead of ID, or the bot hasn't been added to that channel

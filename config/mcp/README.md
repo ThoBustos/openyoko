@@ -27,6 +27,13 @@ claude mcp add slack \
 
 Create the Slack app and bot token at: https://api.slack.com/apps. See [Slack Setup](../../docs/mcp/slack.md) for required OAuth scopes.
 
+```bash
+# Add the Ashby MCP server to Claude Code (requires an org admin to enable it first, see Ashby Setup)
+claude mcp add --transport http ashby https://mcp.ashbyhq.com/mcp/v1
+```
+
+See [Ashby Setup](../../docs/mcp/ashby.md), including what this server currently cannot do (no write tool for the real feedback form).
+
 ## Where Credentials Live
 
 | What | Location | Committed? |
@@ -34,6 +41,7 @@ Create the Slack app and bot token at: https://api.slack.com/apps. See [Slack Se
 | OAuth app secrets | Claude Code MCP config | No |
 | OAuth tokens | `~/.google-mcp-accounts/<email>.json` | No |
 | Slack bot token | Claude Code MCP config (`-e` flag, stored in `~/.claude.json`) | No |
+| Ashby OAuth token | Managed by Claude Code itself, no manual credential file | No |
 
 ## Current Setup
 
@@ -42,12 +50,15 @@ Create the Slack app and bot token at: https://api.slack.com/apps. See [Slack Se
 | Google Workspace | [taylorwilsdon/google_workspace_mcp](https://github.com/taylorwilsdon/google_workspace_mcp) | `uvx workspace-mcp` | stdio |
 | Trello | [delorenj/mcp-server-trello](https://github.com/delorenj/mcp-server-trello) | `bunx @delorenj/mcp-server-trello` | stdio |
 | Slack | [korotovsky/slack-mcp-server](https://github.com/korotovsky/slack-mcp-server) | `npx -y slack-mcp-server` | stdio |
+| Ashby | Ashby's first-party MCP server (Open Beta) | `claude mcp add --transport http` | http |
 
 **Google Workspace Features**: Gmail, Drive, Calendar, Docs, Sheets, Slides, Forms, Tasks, Chat. Multi-account OAuth 2.1.
 
 **Trello Features**: Boards, Lists, Cards, Checklists, Comments, Attachments. Multi-board support with dynamic switching.
 
 **Slack Features**: Channel/DM/thread history, workspace-wide search. Message posting off by default.
+
+**Ashby Features**: Candidate/job/pipeline lookups, interview briefings, notes. No write tool yet for the real feedback scorecard, see the setup doc.
 
 ## Multi-Account Usage
 
@@ -70,10 +81,12 @@ Account selection:
 | `google-credentials.example.json` | Reference for Google OAuth app structure |
 | `trello.example.json` | Reference for Trello API credentials |
 | `slack.example.json` | Reference for Slack bot token config |
+| `ashby.example.json` | Reference for Ashby MCP config, no real credentials involved (OAuth) |
 
 ## Resources
 
 - [Google Workspace Setup](../../docs/mcp/google-workspace.md) - Full setup guide
 - [Trello Setup](../../docs/mcp/trello.md) - Full setup guide
 - [Slack Setup](../../docs/mcp/slack.md) - Full setup guide
+- [Ashby Setup](../../docs/mcp/ashby.md) - Full setup guide, including known gaps
 - [MCP Architecture](../../docs/mcp/ARCHITECTURE.md) - How it all fits together
