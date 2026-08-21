@@ -4,9 +4,9 @@ Connect Slack to Claude Code for message search, channel history, DMs, and works
 
 ## Quick Setup Checklist
 
-- **Time:** ~10 minutes
-- **Risk Level:** Low-Medium (unofficial API, but user-level access)
-- **Prerequisites:** Slack account, Go installed
+- **Time:** ~5 minutes
+- **Risk Level:** Low (official bot token, scoped permissions)
+- **Prerequisites:** Slack account with permission to create an app, Node.js (for `npx`)
 - **Skills Required:** Basic terminal usage
 
 ## Why Slack MCP?
@@ -20,10 +20,11 @@ Connect Slack to Claude Code for message search, channel history, DMs, and works
 
 **Why korotovsky/slack-mcp-server?**
 - Most feature-complete Slack MCP available
-- DMs and Group DMs support (unlike official deprected server)
-- "Stealth mode" - no admin approval needed
+- DMs and group DMs support (unlike the official deprecated server)
+- Supports a real bot token, so it never expires like a scraped browser session
 - Smart history fetch by date or count
 - Actively maintained, good documentation
+- Ships as a single npm binary, no Go toolchain or Docker needed
 
 ---
 
@@ -31,67 +32,31 @@ Connect Slack to Claude Code for message search, channel history, DMs, and works
 
 | Server | Type | Recommendation |
 |--------|------|----------------|
-| **korotovsky/slack-mcp-server** | Local (Go) | ✅ **Recommended** |
+| **korotovsky/slack-mcp-server** | Local (npm binary) | ✅ **Recommended** |
 | @modelcontextprotocol/server-slack | Local (npm) | ❌ Deprecated, unmaintained |
 | Official Slack MCP | Remote | ⏳ Coming Summer 2025 |
 | AVIMBU/slack-mcp-server | Local | ❌ Less features |
 
-### Decision: korotovsky/slack-mcp-server
+### Decision: korotovsky/slack-mcp-server, bot token auth
 
 **Rationale:**
 - Full feature set (DMs, search, threads)
-- Stealth mode for personal use (no Slack app needed)
-- Well-documented, actively maintained
-- Go-based (fast, single binary possible)
+- A real Slack app with a bot token (`xoxb-`) never expires and doesn't depend on a live browser session
+- Distributed on npm as a prebuilt binary, `npx -y slack-mcp-server` just works, no Go install, no Docker
+- This is the same setup already running in production for the Yoko agent
 
 **Trade-offs:**
-- Requires Go installed
-- Stealth tokens expire (need periodic refresh)
-- Not official (but uses same API as Slack client)
+- Requires creating a Slack app once (about 5 minutes, see below)
+- A workspace admin may need to approve the app install
 
 ---
 
 ## Setup Guide
 
-### Prerequisites
+### Step 1: Create a Slack App and Bot Token
 
-```bash
-# Install Go (if not already installed)
-brew install go
-
-# Verify installation
-go version
-```
-
-### Step 1: Clone the Server
-
-```bash
-cd ~/tools  # or wherever you keep tools
-git clone https://github.com/korotovsky/slack-mcp-server.git
-cd slack-mcp-server
-```
-
-### Step 2: Get Authentication Tokens
-
-**Option A: Stealth Mode (Recommended for Personal Use)**
-
-No Slack app creation needed. Uses your existing browser session.
-
-1. Open Slack in your browser (not desktop app)
-2. Open DevTools (F12 or Cmd+Option+I)
-3. Go to **Application** → **Cookies** → `https://app.slack.com`
-4. Find and copy:
-   - `d` cookie → This is your `xoxd-` token
-5. Go to **Console** tab, run:
-   ```javascript
-   JSON.parse(localStorage.getItem("localConfig_v2")).teams[Object.keys(JSON.parse(localStorage.getItem("localConfig_v2")).teams)[0]].token
-   ```
-6. Copy the `xoxc-` token returned
-
-**Option B: OAuth (For Team/Production Use)**
-
-1. Create a Slack app at [api.slack.com/apps](https://api.slack.com/apps)
-2. Add OAuth scopes:
+1. Go to [api.slack.com/apps](https://api.slack.com/apps) and create a new app
+2. Under **OAuth & Permissions**, add these Bot Token Scopes:
    - `channels:history`
    - `channels:read`
    - `groups:history`
@@ -102,75 +67,25 @@ No Slack app creation needed. Uses your existing browser session.
    - `mpim:read`
    - `search:read`
    - `users:read`
-3. Install to workspace and get Bot token (`xoxb-`)
+3. Install the app to your workspace
+4. Copy the **Bot User OAuth Token** (`xoxb-...`)
 
-### Step 3: Store Credentials
-
-```bash
-# Create credentials directory
-mkdir -p ~/.config/personal-agent-os/slack
-chmod 700 ~/.config/personal-agent-os/slack
-
-# Create credentials file (stealth mode)
-cat > ~/.config/personal-agent-os/slack/credentials.json << 'EOF'
-{
-  "mode": "stealth",
-  "stealth_token": "xoxc-YOUR-TOKEN-HERE",
-  "stealth_cookie": "xoxd-YOUR-COOKIE-HERE"
-}
-EOF
-
-chmod 600 ~/.config/personal-agent-os/slack/credentials.json
-```
-
-### Step 4: Configure Claude Code
-
-Edit `.claude/settings.local.json`:
-
-```json
-{
-  "mcpServers": {
-    "slack": {
-      "command": "go",
-      "args": ["run", "mcp/mcp-server.go"],
-      "cwd": "/Users/yourname/tools/slack-mcp-server",
-      "env": {
-        "SLACK_MCP_STEALTH_TOKEN": "xoxc-YOUR-TOKEN-HERE",
-        "SLACK_MCP_STEALTH_COOKIE": "xoxd-YOUR-COOKIE-HERE",
-        "SLACK_MCP_CACHE_DIR": "~/.cache/slack-mcp"
-      }
-    }
-  }
-}
-```
-
-**Alternative: Build Binary First (Faster Startup)**
+### Step 2: Add the MCP Server to Claude Code
 
 ```bash
-cd ~/tools/slack-mcp-server
-go build -o slack-mcp mcp/mcp-server.go
+claude mcp add slack \
+  -e SLACK_MCP_XOXB_TOKEN=xoxb-your-bot-token \
+  -e SLACK_MCP_ADD_MESSAGE_TOOL=false \
+  -- npx -y slack-mcp-server
 ```
 
-Then use in config:
-```json
-{
-  "mcpServers": {
-    "slack": {
-      "command": "/Users/yourname/tools/slack-mcp-server/slack-mcp",
-      "env": {
-        "SLACK_MCP_STEALTH_TOKEN": "xoxc-YOUR-TOKEN-HERE",
-        "SLACK_MCP_STEALTH_COOKIE": "xoxd-YOUR-COOKIE-HERE"
-      }
-    }
-  }
-}
-```
+This stores the token in Claude Code's own MCP config (`~/.claude.json`, user scope), not in this repo. `npx` downloads the prebuilt binary on first run and caches it.
 
-### Step 5: Test Connection
+### Step 3: Test Connection
 
 ```bash
-# Restart Claude Code, then:
-/mcp  # Should show slack server connected
+# Check it's connected:
+/mcp
 
 # Test with:
 "List my Slack channels"
@@ -191,16 +106,14 @@ Then use in config:
 
 ### Enabling Message Posting (Optional)
 
-If you want Claude to post messages:
-
-```json
-{
-  "env": {
-    "SLACK_MCP_ENABLE_WRITE": "true",
-    "SLACK_MCP_ALLOWED_CHANNELS": "C12345,C67890"  // Optional: restrict to specific channels
-  }
-}
+```bash
+claude mcp add slack \
+  -e SLACK_MCP_XOXB_TOKEN=xoxb-your-bot-token \
+  -e SLACK_MCP_ADD_MESSAGE_TOOL=true \
+  -- npx -y slack-mcp-server
 ```
+
+`SLACK_MCP_ADD_MESSAGE_TOOL` also accepts a comma-separated channel ID list instead of `true`, to restrict posting to specific channels.
 
 **Warning:** Consider carefully before enabling. Read-only is safer for personal use.
 
@@ -290,53 +203,38 @@ In project `_STATE.md`:
 
 ## Troubleshooting
 
-### "Invalid token" or Authentication Error
+### "Invalid auth" or Authentication Error
 
-**Cause:** Stealth tokens expired (typically after ~2 weeks)
+**Cause:** Bot token revoked, or the app was reinstalled with a new token
 
 **Fix:**
-1. Re-extract tokens from browser (Step 2)
-2. Update credentials file
+1. Get the current token from **OAuth & Permissions** in your Slack app settings
+2. Update it: `claude mcp remove slack -s user && claude mcp add slack -e SLACK_MCP_XOXB_TOKEN=xoxb-new-token -e SLACK_MCP_ADD_MESSAGE_TOOL=false -- npx -y slack-mcp-server`
 3. Restart Claude Code
 
 ### "Channel not found"
 
-**Cause:** Using channel name instead of ID, or no access
+**Cause:** Using channel name instead of ID, or the bot hasn't been added to that channel
 
 **Fix:**
-1. Use channel ID (C1234...) not name
-2. Or say "Search for channel named #engineering" first
-3. Verify you have access to the channel
+1. Invite the bot to the channel in Slack (`/invite @your-bot-name`)
+2. Use the channel ID (C1234...) instead of the name if the lookup still fails
+3. Verify the bot has the right scopes for that conversation type (channel vs. group vs. DM)
 
 ### Slow Startup
 
-**Cause:** Running `go run` each time
+**Cause:** `npx` re-resolving the package each time
 
-**Fix:** Build the binary first:
-```bash
-cd ~/tools/slack-mcp-server
-go build -o slack-mcp mcp/mcp-server.go
-# Update config to use binary path
-```
-
-### Rate Limiting
-
-**Cause:** Too many requests
-
-**Fix:**
-1. Enable caching: `SLACK_MCP_CACHE_DIR=~/.cache/slack-mcp`
-2. Space out large searches
-3. Wait a few minutes if hitting limits
+**Fix:** This is normal on the first run per cache expiry; `npx` caches the binary afterward and subsequent starts are fast.
 
 ### Server Not Appearing in `/mcp`
 
-**Cause:** Config error or Go not in PATH
+**Cause:** Config error, or Node/npx not on PATH
 
 **Fix:**
-1. Verify Go is installed: `go version`
-2. Check config JSON syntax
-3. Ensure `cwd` path is correct
-4. Check Claude Code logs for errors
+1. Verify Node is installed: `npx --version`
+2. Check the server status: `claude mcp get slack`
+3. Check Claude Code logs for errors
 
 ---
 
@@ -344,35 +242,32 @@ go build -o slack-mcp mcp/mcp-server.go
 
 ### Token Safety
 
-| Asset | Location | Permissions |
-|-------|----------|-------------|
-| Credentials | `~/.config/personal-agent-os/slack/credentials.json` | 600 |
-| Directory | `~/.config/personal-agent-os/slack/` | 700 |
-| Cache | `~/.cache/slack-mcp/` | 700 |
+| Asset | Location | Committed? |
+|-------|----------|------------|
+| Bot token | Claude Code MCP config (`~/.claude.json`, user scope) | No |
+| Example config | `config/mcp/slack.example.json` | Yes, placeholder only |
 
 ### Best Practices
 
-1. **Never commit tokens** - They're in gitignored directories
-2. **Refresh periodically** - Stealth tokens expire
-3. **Keep write disabled** - Read-only is safer
-4. **Use specific channels** - If enabling write, restrict channels
+1. **Never commit tokens.** `config/mcp/*.json` is gitignored except `*.example.json`. Only the example (placeholder) files are committed.
+2. **Scope the bot narrowly.** Only grant the OAuth scopes actually needed (see Step 1).
+3. **Keep write disabled** unless you specifically need Claude to post. Read-only is safer for personal use.
+4. **Restrict channels** if enabling write, via `SLACK_MCP_ADD_MESSAGE_TOOL=C12345,C67890` instead of `true`.
 
-### Token Scope (Stealth Mode)
+### Token Scope (Bot Token)
 
 **What it can access:**
-- ✅ All channels you're a member of
-- ✅ All DMs and group DMs
-- ✅ Search across workspace
+- ✅ Channels the bot has been invited to
+- ✅ DMs and group DMs the bot is part of
+- ✅ Search across workspace (with `search:read`)
 - ✅ Thread history
-- ❌ Channels you're not in
+- ❌ Channels the bot hasn't joined
 - ❌ Admin settings
-- ❌ Other users' DMs
+- ❌ Other users' private DMs the bot isn't part of
 
 ### Revoking Access
 
-**Stealth tokens:** Log out of Slack in browser, or change password
-
-**OAuth tokens:** Revoke in Slack workspace settings → Apps
+Revoke in Slack workspace settings → **Apps** → find the app → **Remove App**, or rotate the bot token from **OAuth & Permissions** and update the MCP config.
 
 ---
 
@@ -382,13 +277,13 @@ go build -o slack-mcp mcp/mcp-server.go
 
 | Variable | Description | Required |
 |----------|-------------|----------|
-| `SLACK_MCP_STEALTH_TOKEN` | xoxc- token | Yes (stealth) |
-| `SLACK_MCP_STEALTH_COOKIE` | xoxd- cookie | Yes (stealth) |
-| `SLACK_MCP_BOT_TOKEN` | xoxb- token | Yes (OAuth) |
-| `SLACK_MCP_CACHE_DIR` | Cache directory | Recommended |
-| `SLACK_MCP_ENABLE_WRITE` | Enable posting | No (default: false) |
-| `SLACK_MCP_ALLOWED_CHANNELS` | Restrict write to channels | No |
-| `SLACK_MCP_GOVSLACK` | Enable GovSlack mode | No |
+| `SLACK_MCP_XOXB_TOKEN` | Bot token (`xoxb-...`) | Yes, for bot-token auth (recommended) |
+| `SLACK_MCP_XOXC_TOKEN` | Browser session token (`xoxc-...`) | Alternative: stealth mode, no app needed, expires periodically |
+| `SLACK_MCP_XOXD_TOKEN` | Browser session cookie (`xoxd-...`) | Alternative: stealth mode, paired with `XOXC_TOKEN` |
+| `SLACK_MCP_ADD_MESSAGE_TOOL` | Enable posting: `true`, `false`, or a comma-separated channel ID list | No (default: `false`) |
+| `SLACK_MCP_HOST` / `SLACK_MCP_PORT` | Bind address/port, only relevant for `http`/`sse` transport | No |
+
+Stealth mode (`XOXC`/`XOXD`) works without creating a Slack app, but the tokens come from your live browser session and expire every couple of weeks. Bot-token mode is the recommended default for this repo and is what the production Yoko agent uses.
 
 ### Full Config Example
 
@@ -396,12 +291,11 @@ go build -o slack-mcp mcp/mcp-server.go
 {
   "mcpServers": {
     "slack": {
-      "command": "/Users/yourname/tools/slack-mcp-server/slack-mcp",
+      "command": "npx",
+      "args": ["-y", "slack-mcp-server"],
       "env": {
-        "SLACK_MCP_STEALTH_TOKEN": "xoxc-...",
-        "SLACK_MCP_STEALTH_COOKIE": "xoxd-...",
-        "SLACK_MCP_CACHE_DIR": "~/.cache/slack-mcp",
-        "SLACK_MCP_ENABLE_WRITE": "false"
+        "SLACK_MCP_XOXB_TOKEN": "xoxb-...",
+        "SLACK_MCP_ADD_MESSAGE_TOOL": "false"
       }
     }
   }
@@ -428,17 +322,15 @@ go build -o slack-mcp mcp/mcp-server.go
 ### Installation
 
 ```bash
-# 1. Clone
-git clone https://github.com/korotovsky/slack-mcp-server.git ~/tools/slack-mcp-server
+# 1. Create a Slack app and bot token (see Step 1 above)
 
-# 2. Build (optional but recommended)
-cd ~/tools/slack-mcp-server && go build -o slack-mcp mcp/mcp-server.go
+# 2. Add to Claude Code
+claude mcp add slack \
+  -e SLACK_MCP_XOXB_TOKEN=xoxb-your-bot-token \
+  -e SLACK_MCP_ADD_MESSAGE_TOOL=false \
+  -- npx -y slack-mcp-server
 
-# 3. Get tokens from browser DevTools (see Step 2 above)
-
-# 4. Add to Claude Code settings (see Step 4 above)
-
-# 5. Verify
+# 3. Verify
 /mcp
 ```
 
@@ -463,6 +355,6 @@ cd ~/tools/slack-mcp-server && go build -o slack-mcp mcp/mcp-server.go
 
 ---
 
-**Setup Status:** Ready for implementation
-**Last Updated:** 2026-02-05
+**Setup Status:** Live, matches the production Yoko agent setup
+**Last Updated:** 2026-08-21
 **Maintained By:** Personal Agent OS
