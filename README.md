@@ -55,6 +55,12 @@ See [Hermes Agent Setup](docs/HERMES_AGENT_SETUP.md) to run Yoko on your own ser
 - Feedback on interviews
 - Turning recurring problems into standing processes
 - Helping me prioritize and focus on my areas of growth and learning: what I'm reading, what I'm writing
+- Organizing projects, decisions, tasks, and follow-ups without losing context
+- Preparing the day from goals, calendar, inbox, and unfinished work
+- Keeping track of relationships, opportunities, subscriptions, expenses, and renewals
+- Managing content pipelines from idea to publication
+- Monitoring apps and infrastructure: deployments, errors, security, and backups
+- Tracking habits and whether daily actions remain aligned with longer-term goals
 
 ---
 
