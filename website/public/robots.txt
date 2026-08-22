@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /explorations
+
+Sitemap: https://openyoko.com/sitemap.xml
