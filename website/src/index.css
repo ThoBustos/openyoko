@@ -279,7 +279,8 @@ h1 { font-size: clamp(4.8rem, min(7.2vw, 12vh), 7.8rem); line-height: .83; }
   .provider-label span { font-size: 1.2rem; }
   .provider-label small { margin-top: 2px; font-size: .45rem; }
   .provider-marquee { min-height: 72px; }
-  .provider { padding-inline: 22px; }
+  .provider { min-width: 74px; justify-content: center; padding-inline: 20px; }
+  .provider > span:last-child { display: none; }
   .principles { grid-template-columns: 1fr; gap: 1px; }
   .principles > div { min-height: 72px; justify-content: flex-start; padding: 14px 22px; }
   .use-case-showcase { margin-top: 16px; }
