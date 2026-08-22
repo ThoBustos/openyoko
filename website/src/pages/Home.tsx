@@ -2,7 +2,7 @@ import { ArrowDown, ArrowUpRight, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { GlyphMatrix } from "@/components/ui/glyph-matrix";
 import { Marquee } from "@/components/ui/marquee";
-import { ClaudeMark, CursorMark, ObsidianMark, OpenAIMark, SlackMark, WhatsAppMark } from "@/components/brand-marks";
+import { ClaudeMark, CursorMark, GranolaMark, ObsidianMark, OpenAIMark, SlackMark, TeamsMark, WhatsAppMark } from "@/components/brand-marks";
 import yoko from "@/assets/yoko.webp";
 import mark from "@/assets/openyoko-no-bg.webp";
 import everywhereIcon from "@/assets/system-icons/everywhere.webp";
@@ -17,6 +17,7 @@ import mistral from "@/assets/providers/mistralai.svg";
 import copilot from "@/assets/providers/githubcopilot.svg";
 import opencode from "@/assets/providers/opencode.svg";
 import windsurf from "@/assets/providers/windsurf.svg";
+import ashby from "@/assets/providers/ashby.webp";
 
 const githubUrl = "https://github.com/ThoBustos/openyoko";
 
@@ -33,6 +34,9 @@ const providers = [
   { name: "Obsidian", mark: <ObsidianMark /> },
   { name: "Slack", mark: <SlackMark /> },
   { name: "WhatsApp", mark: <WhatsAppMark /> },
+  { name: "Granola", mark: <GranolaMark /> },
+  { name: "Microsoft Teams", mark: <TeamsMark /> },
+  { name: "Ashby", logo: ashby },
 ];
 
 const useCaseGroups = [

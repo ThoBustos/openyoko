@@ -6,7 +6,7 @@ import { GlyphMatrix } from "@/components/ui/glyph-matrix";
 import { Marquee } from "@/components/ui/marquee";
 import { OrbitingCircles } from "@/components/ui/orbiting-circles";
 import { EverywhereIcon, HarnessIcon } from "@/components/icons";
-import { ClaudeMark, ComputerMark, CursorMark, HermesMark, ObsidianMark, OpenAIMark, SlackMark, TelegramMark, WhatsAppMark } from "@/components/brand-marks";
+import { ClaudeMark, ComputerMark, CursorMark, GranolaMark, HermesMark, ObsidianMark, OpenAIMark, SlackMark, TeamsMark, TelegramMark, WhatsAppMark } from "@/components/brand-marks";
 import yoko from "@/assets/yoko.webp";
 import mark from "@/assets/openyoko-no-bg.webp";
 import everywhereIcon from "@/assets/system-icons/everywhere.webp";
@@ -38,6 +38,9 @@ const providers = [
   { name: "Obsidian", mark: <ObsidianMark /> },
   { name: "Slack", mark: <SlackMark /> },
   { name: "WhatsApp", mark: <WhatsAppMark /> },
+  { name: "Granola", mark: <GranolaMark /> },
+  { name: "Microsoft Teams", mark: <TeamsMark /> },
+  { name: "Ashby", logo: ashby },
 ];
 
 const useCaseGroups = [
