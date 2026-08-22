@@ -79,6 +79,9 @@ h1 { font-size: clamp(4.8rem, min(7.2vw, 12vh), 7.8rem); line-height: .83; }
 
 .use-case-showcase { margin-top: var(--page-margin); }
 .use-case-showcase > .use-case-concept { border-top: 1.5px solid var(--color-ink); }
+.site-footer { min-height: 120px; display: flex; align-items: center; justify-content: space-between; gap: 24px; width: calc(100% - var(--page-margin) - var(--page-margin)); max-width: 1720px; margin: 0 auto; padding: 34px 24px max(34px, env(safe-area-inset-bottom)); font-size: .58rem; letter-spacing: .08em; text-transform: uppercase; }
+.site-footer a { text-decoration: underline; text-underline-offset: 4px; }
+.site-footer a:hover { text-decoration-thickness: 2px; }
 .showcase-label { display: flex; align-items: end; justify-content: space-between; gap: 40px; padding: 24px 32px; border: 1.5px solid var(--color-ink); background: var(--color-ink); color: var(--color-paper); }
 .showcase-label span { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.8rem); letter-spacing: .04em; text-transform: uppercase; }
 .showcase-label p { max-width: 530px; margin: 0; font-size: .65rem; line-height: 1.6; }
@@ -280,6 +283,7 @@ h1 { font-size: clamp(4.8rem, min(7.2vw, 12vh), 7.8rem); line-height: .83; }
   .principles { grid-template-columns: 1fr; gap: 1px; }
   .principles > div { min-height: 72px; justify-content: flex-start; padding: 14px 22px; }
   .use-case-showcase { margin-top: 16px; }
+  .site-footer { min-height: 132px; width: 100%; padding: 36px 22px max(44px, env(safe-area-inset-bottom)); }
   .showcase-label { align-items: flex-start; flex-direction: column; padding: 24px; }
   .concept-header { grid-template-columns: 1fr; gap: 18px; padding: 48px 24px; }
   .concept-header h2 { font-size: clamp(3.4rem, 15vw, 5.2rem); }

@@ -124,5 +124,5 @@ function LivingBento() {
 }
 
 export default function Home() {
-  return <><a className="skip-link" href="#main-content">Skip to content</a><main id="main-content"><GlyphMatrix className="site-glyphs" color="#ff5a00" fadeBottom={0} /><div className="site-shell"><Hero /><div className="use-case-showcase"><LivingBento /></div></div></main></>;
+  return <><a className="skip-link" href="#main-content">Skip to content</a><main id="main-content"><GlyphMatrix className="site-glyphs" color="#ff5a00" fadeBottom={0} /><div className="site-shell"><Hero /><div className="use-case-showcase"><LivingBento /></div></div><footer className="site-footer"><span>@ OpenYoko 2026</span><a href="https://thomasbustos.com">thomasbustos.com</a></footer></main></>;
 }
