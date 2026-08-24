@@ -1,6 +1,6 @@
 import type { SVGProps } from "react";
 import { faOpenai } from "@fortawesome/free-brands-svg-icons";
-import { siClaude, siCursor, siLinear, siObsidian, siTelegram, siWhatsapp } from "simple-icons";
+import { siClaude, siCursor, siExcalidraw, siLinear, siNotion, siObsidian, siTelegram, siWhatsapp } from "simple-icons";
 
 type MarkProps = SVGProps<SVGSVGElement>;
 
@@ -19,6 +19,18 @@ export function ObsidianMark(props: MarkProps) { return <SimpleMark icon={siObsi
 export function TelegramMark(props: MarkProps) { return <SimpleMark icon={siTelegram} {...props} />; }
 export function WhatsAppMark(props: MarkProps) { return <SimpleMark icon={siWhatsapp} {...props} />; }
 export function LinearMark(props: MarkProps) { return <SimpleMark icon={siLinear} {...props} />; }
+export function NotionMark(props: MarkProps) { return <SimpleMark icon={siNotion} {...props} />; }
+export function ExcalidrawMark(props: MarkProps) { return <SimpleMark icon={siExcalidraw} {...props} />; }
+
+export function FigmaMark(props: MarkProps) {
+  return <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
+    <path fill="#F24E1E" d="M8 2h4v7H8a3.5 3.5 0 1 1 0-7Z" />
+    <path fill="#FF7262" d="M12 2h4a3.5 3.5 0 1 1 0 7h-4V2Z" />
+    <path fill="#A259FF" d="M8 9h4v7H8a3.5 3.5 0 1 1 0-7Z" />
+    <circle cx="15.5" cy="12.5" r="3.5" fill="#1ABCFE" />
+    <path fill="#0ACF83" d="M8 16h4v3.5A3.5 3.5 0 1 1 8 16Z" />
+  </svg>;
+}
 
 export function GoogleMark(props: MarkProps) {
   return <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
