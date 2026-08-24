@@ -1,6 +1,6 @@
 import type { SVGProps } from "react";
 import { faOpenai } from "@fortawesome/free-brands-svg-icons";
-import { siClaude, siCursor, siExcalidraw, siLinear, siNotion, siObsidian, siTelegram, siWhatsapp } from "simple-icons";
+import { siClaude, siCloudflare, siCursor, siExcalidraw, siLinear, siNotion, siObsidian, siRailway, siResend, siSupabase, siTelegram, siVercel, siWhatsapp } from "simple-icons";
 
 type MarkProps = SVGProps<SVGSVGElement>;
 
@@ -21,6 +21,11 @@ export function WhatsAppMark(props: MarkProps) { return <SimpleMark icon={siWhat
 export function LinearMark(props: MarkProps) { return <SimpleMark icon={siLinear} {...props} />; }
 export function NotionMark(props: MarkProps) { return <SimpleMark icon={siNotion} {...props} />; }
 export function ExcalidrawMark(props: MarkProps) { return <SimpleMark icon={siExcalidraw} {...props} />; }
+export function RailwayMark(props: MarkProps) { return <SimpleMark icon={siRailway} {...props} />; }
+export function SupabaseMark(props: MarkProps) { return <SimpleMark icon={siSupabase} {...props} />; }
+export function VercelMark(props: MarkProps) { return <SimpleMark icon={siVercel} {...props} />; }
+export function ResendMark(props: MarkProps) { return <SimpleMark icon={siResend} {...props} />; }
+export function CloudflareMark(props: MarkProps) { return <SimpleMark icon={siCloudflare} {...props} />; }
 
 export function FigmaMark(props: MarkProps) {
   return <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>

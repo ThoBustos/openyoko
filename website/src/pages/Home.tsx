@@ -3,7 +3,7 @@ import { ArrowDown, ArrowUpRight, Github, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { GlyphMatrix } from "@/components/ui/glyph-matrix";
 import { Marquee } from "@/components/ui/marquee";
-import { ClaudeMark, CursorMark, ExcalidrawMark, FigmaMark, GoogleMark, GranolaMark, LinearMark, NotionMark, ObsidianMark, OpenAIMark, SlackMark, TeamsMark, TelegramMark, WhatsAppMark } from "@/components/brand-marks";
+import { ClaudeMark, CloudflareMark, CursorMark, ExcalidrawMark, FigmaMark, GoogleMark, GranolaMark, LinearMark, NotionMark, ObsidianMark, OpenAIMark, RailwayMark, ResendMark, SlackMark, SupabaseMark, TeamsMark, TelegramMark, VercelMark, WhatsAppMark } from "@/components/brand-marks";
 import yoko from "@/assets/yoko.webp";
 import mark from "@/assets/openyoko-no-bg.webp";
 import everywhereIcon from "@/assets/system-icons/everywhere.webp";
@@ -62,6 +62,11 @@ const providers = [
   { name: "Notion", mark: <NotionMark /> },
   { name: "Excalidraw", mark: <ExcalidrawMark /> },
   { name: "Figma", mark: <FigmaMark /> },
+  { name: "Railway", mark: <RailwayMark /> },
+  { name: "Supabase", mark: <SupabaseMark /> },
+  { name: "Vercel", mark: <VercelMark /> },
+  { name: "Resend", mark: <ResendMark /> },
+  { name: "Cloudflare", mark: <CloudflareMark /> },
 ];
 
 const useCaseGroups = [
