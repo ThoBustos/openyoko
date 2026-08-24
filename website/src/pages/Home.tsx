@@ -101,7 +101,7 @@ function Hero() {
         <div className="hero-copy">
           <span className="eyebrow">Thomas’ open-source personal AI system</span>
           <h1 id="hero-title">Your AI,<br />with you<br />everywhere.</h1>
-          <p>One private system connects every AI harness—across your devices, tools, work, and life.</p>
+          <p>One private system connects every AI harness across your devices, tools, work, and life.</p>
           <div className="actions">
             <Button asChild><a href={githubUrl} target="_blank" rel="noreferrer"><Github size={15} /> View on GitHub <ArrowUpRight size={15} /></a></Button>
             <a className="text-link" href="#system">See how it works <ArrowDown size={15} /></a>
