@@ -58,7 +58,7 @@ h1 { font-size: clamp(4.8rem, min(7.2vw, 12vh), 7.8rem); line-height: .83; }
 .yoko-card img { width: 96%; max-height: 104%; object-fit: contain; object-position: bottom center; filter: drop-shadow(0 0 1px var(--color-ink)); }
 .yoko-panel-footer { border: 1.5px solid var(--color-ink); border-top: 0; background: var(--color-paper); }
 .yoko-panel-footer > p { margin: 0; padding: 10px 14px; font-size: .57rem; line-height: 1.45; }
-.yoko-work { min-height: 42px; display: flex; align-items: center; gap: 5px; padding: 8px 14px; border-top: 1px solid rgb(16 19 26 / .24); color: #686058; font-size: .44rem; line-height: 1.35; text-transform: uppercase; letter-spacing: .08em; }
+.yoko-work { min-height: 42px; display: flex; align-items: center; gap: 5px; padding: 8px 14px; color: #686058; font-size: .44rem; line-height: 1.35; text-transform: uppercase; letter-spacing: .08em; }
 .yoko-work a { color: var(--color-ink); text-decoration: underline; text-underline-offset: 3px; }
 .yoko-work a:hover { text-decoration-thickness: 2px; }
 
