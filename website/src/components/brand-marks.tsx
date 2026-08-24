@@ -1,6 +1,6 @@
 import type { SVGProps } from "react";
 import { faOpenai } from "@fortawesome/free-brands-svg-icons";
-import { siClaude, siCloudflare, siCursor, siExcalidraw, siLinear, siNotion, siObsidian, siRailway, siResend, siSupabase, siTelegram, siVercel, siWhatsapp } from "simple-icons";
+import { siAnthropic, siClaude, siCloudflare, siCursor, siExcalidraw, siLinear, siNotion, siObsidian, siPi, siRailway, siResend, siSupabase, siTelegram, siVercel, siWhatsapp } from "simple-icons";
 
 type MarkProps = SVGProps<SVGSVGElement>;
 
@@ -14,6 +14,8 @@ export function OpenAIMark(props: MarkProps) {
 }
 
 export function ClaudeMark(props: MarkProps) { return <SimpleMark icon={siClaude} {...props} />; }
+export function AnthropicMark(props: MarkProps) { return <SimpleMark icon={siAnthropic} {...props} />; }
+export function PiMark(props: MarkProps) { return <SimpleMark icon={siPi} {...props} />; }
 export function CursorMark(props: MarkProps) { return <SimpleMark icon={siCursor} {...props} />; }
 export function ObsidianMark(props: MarkProps) { return <SimpleMark icon={siObsidian} {...props} />; }
 export function TelegramMark(props: MarkProps) { return <SimpleMark icon={siTelegram} {...props} />; }

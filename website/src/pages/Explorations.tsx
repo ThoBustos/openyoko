@@ -6,7 +6,7 @@ import { GlyphMatrix } from "@/components/ui/glyph-matrix";
 import { Marquee } from "@/components/ui/marquee";
 import { OrbitingCircles } from "@/components/ui/orbiting-circles";
 import { EverywhereIcon, HarnessIcon } from "@/components/icons";
-import { ClaudeMark, CloudflareMark, ComputerMark, CursorMark, ExcalidrawMark, FigmaMark, GoogleMark, GranolaMark, HermesMark, LinearMark, NotionMark, ObsidianMark, OpenAIMark, RailwayMark, ResendMark, SlackMark, SupabaseMark, TeamsMark, TelegramMark, VercelMark, WhatsAppMark } from "@/components/brand-marks";
+import { AnthropicMark, ClaudeMark, CloudflareMark, ComputerMark, CursorMark, ExcalidrawMark, FigmaMark, GoogleMark, GranolaMark, HermesMark, LinearMark, NotionMark, ObsidianMark, OpenAIMark, PiMark, RailwayMark, ResendMark, SlackMark, SupabaseMark, TeamsMark, TelegramMark, VercelMark, WhatsAppMark } from "@/components/brand-marks";
 import yoko from "@/assets/yoko.webp";
 import mark from "@/assets/openyoko-no-bg.webp";
 import everywhereIcon from "@/assets/system-icons/everywhere.webp";
@@ -27,11 +27,15 @@ const githubUrl = "https://github.com/ThoBustos/openyoko";
 
 const providers = [
   { name: "OpenAI", mark: <OpenAIMark /> },
-  { name: "Claude", mark: <ClaudeMark /> },
+  { name: "Anthropic", mark: <AnthropicMark /> },
   { name: "Gemini", logo: gemini },
   { name: "Mistral", logo: mistral },
   { name: "DeepSeek", logo: deepseek },
   { name: "Cursor", mark: <CursorMark /> },
+  { name: "Codex", mark: <OpenAIMark /> },
+  { name: "Claude Code", mark: <ClaudeMark /> },
+  { name: "Pi", mark: <PiMark /> },
+  { name: "Hermes", mark: <HermesMark /> },
   { name: "GitHub Copilot", logo: copilot },
   { name: "OpenCode", logo: opencode },
   { name: "Windsurf", logo: windsurf },
