@@ -6,7 +6,7 @@ import { GlyphMatrix } from "@/components/ui/glyph-matrix";
 import { Marquee } from "@/components/ui/marquee";
 import { OrbitingCircles } from "@/components/ui/orbiting-circles";
 import { EverywhereIcon, HarnessIcon } from "@/components/icons";
-import { AnthropicMark, ClaudeMark, CloudflareMark, ComputerMark, CursorMark, ExcalidrawMark, FigmaMark, GoogleMark, GranolaMark, HermesMark, LinearMark, NotionMark, ObsidianMark, OpenAIMark, PiMark, RailwayMark, ResendMark, SlackMark, SupabaseMark, TeamsMark, TelegramMark, VercelMark, WhatsAppMark } from "@/components/brand-marks";
+import { AnthropicMark, ClaudeMark, CloudflareMark, ComputerMark, CursorMark, ExcalidrawMark, FigmaMark, GmailMark, GoogleCalendarMark, GoogleDocsMark, GoogleDriveMark, GoogleMark, GoogleMeetMark, GranolaMark, HermesMark, LinearMark, NotionMark, ObsidianMark, OpenAIMark, PiMark, RailwayMark, ResendMark, SlackMark, SupabaseMark, TeamsMark, TelegramMark, VercelMark, WhatsAppMark, ZoomMark } from "@/components/brand-marks";
 import yoko from "@/assets/yoko.webp";
 import mark from "@/assets/openyoko-no-bg.webp";
 import everywhereIcon from "@/assets/system-icons/everywhere.webp";
@@ -31,20 +31,26 @@ const providers = [
   { name: "Codex", mark: <OpenAIMark /> },
   { name: "Notion", mark: <NotionMark /> },
   { name: "Anthropic", mark: <AnthropicMark /> },
+  { name: "Zoom", mark: <ZoomMark /> },
   { name: "Granola", mark: <GranolaMark /> },
+  { name: "Gmail", mark: <GmailMark /> },
   { name: "Claude Code", mark: <ClaudeMark /> },
+  { name: "Google Calendar", mark: <GoogleCalendarMark /> },
   { name: "Linear", mark: <LinearMark /> },
   { name: "Gemini", logo: gemini },
   { name: "WhatsApp", mark: <WhatsAppMark /> },
   { name: "Cursor", mark: <CursorMark /> },
   { name: "Supabase", mark: <SupabaseMark /> },
   { name: "Mistral", logo: mistral },
+  { name: "Google Drive", mark: <GoogleDriveMark /> },
   { name: "Figma", mark: <FigmaMark /> },
   { name: "Hermes", mark: <HermesMark /> },
+  { name: "Google Meet", mark: <GoogleMeetMark /> },
   { name: "Google Workspace", mark: <GoogleMark /> },
   { name: "DeepSeek", logo: deepseek },
   { name: "Ashby", logo: ashby },
   { name: "Pi", mark: <PiMark /> },
+  { name: "Google Docs", mark: <GoogleDocsMark /> },
   { name: "Railway", mark: <RailwayMark /> },
   { name: "GitHub Copilot", logo: copilot },
   { name: "Microsoft Teams", mark: <TeamsMark /> },

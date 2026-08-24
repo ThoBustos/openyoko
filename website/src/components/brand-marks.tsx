@@ -1,6 +1,6 @@
 import type { SVGProps } from "react";
 import { faOpenai } from "@fortawesome/free-brands-svg-icons";
-import { siAnthropic, siClaude, siCloudflare, siCursor, siExcalidraw, siLinear, siNotion, siObsidian, siPi, siRailway, siResend, siSupabase, siTelegram, siVercel, siWhatsapp } from "simple-icons";
+import { siAnthropic, siClaude, siCloudflare, siCursor, siExcalidraw, siGmail, siGooglecalendar, siGoogledocs, siGoogledrive, siGooglemeet, siLinear, siNotion, siObsidian, siPi, siRailway, siResend, siSupabase, siTelegram, siVercel, siWhatsapp, siZoom } from "simple-icons";
 
 type MarkProps = SVGProps<SVGSVGElement>;
 
@@ -28,6 +28,12 @@ export function SupabaseMark(props: MarkProps) { return <SimpleMark icon={siSupa
 export function VercelMark(props: MarkProps) { return <SimpleMark icon={siVercel} {...props} />; }
 export function ResendMark(props: MarkProps) { return <SimpleMark icon={siResend} {...props} />; }
 export function CloudflareMark(props: MarkProps) { return <SimpleMark icon={siCloudflare} {...props} />; }
+export function ZoomMark(props: MarkProps) { return <SimpleMark icon={siZoom} {...props} />; }
+export function GmailMark(props: MarkProps) { return <SimpleMark icon={siGmail} {...props} />; }
+export function GoogleCalendarMark(props: MarkProps) { return <SimpleMark icon={siGooglecalendar} {...props} />; }
+export function GoogleDriveMark(props: MarkProps) { return <SimpleMark icon={siGoogledrive} {...props} />; }
+export function GoogleMeetMark(props: MarkProps) { return <SimpleMark icon={siGooglemeet} {...props} />; }
+export function GoogleDocsMark(props: MarkProps) { return <SimpleMark icon={siGoogledocs} {...props} />; }
 
 export function FigmaMark(props: MarkProps) {
   return <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
