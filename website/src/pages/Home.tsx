@@ -1,4 +1,5 @@
-import { ArrowDown, ArrowUpRight, Github } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ArrowDown, ArrowUpRight, Github, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { GlyphMatrix } from "@/components/ui/glyph-matrix";
 import { Marquee } from "@/components/ui/marquee";
@@ -20,6 +21,24 @@ import windsurf from "@/assets/providers/windsurf.svg";
 import ashby from "@/assets/providers/ashby.webp";
 
 const githubUrl = "https://github.com/ThoBustos/openyoko";
+const githubApiUrl = "https://api.github.com/repos/ThoBustos/openyoko";
+
+function GitHubLink() {
+  const [stars, setStars] = useState(10);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    fetch(githubApiUrl, { headers: { Accept: "application/vnd.github+json" }, signal: controller.signal })
+      .then((response) => response.ok ? response.json() : Promise.reject(new Error("GitHub request failed")))
+      .then((repository: { stargazers_count?: number }) => {
+        if (typeof repository.stargazers_count === "number") setStars(repository.stargazers_count);
+      })
+      .catch(() => undefined);
+    return () => controller.abort();
+  }, []);
+
+  return <a className="github-nav-link" href={githubUrl} target="_blank" rel="noreferrer" aria-label={`OpenYoko on GitHub, ${stars} stars`}><span>GitHub</span><span className="github-stars"><Star size={14} fill="currentColor" /> {stars}</span><ArrowUpRight size={15} /></a>;
+}
 
 const providers = [
   { name: "OpenAI", mark: <OpenAIMark /> },
@@ -74,7 +93,7 @@ function Hero() {
         <a className="brand" href="#top" aria-label="OpenYoko home"><img src={mark} alt="" width="48" height="48" decoding="async" /><span>OPENYOKO</span></a>
         <nav aria-label="Main navigation">
           <a href="#system">The system</a>
-          <a href={githubUrl} target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={15} /></a>
+          <GitHubLink />
         </nav>
       </header>
 

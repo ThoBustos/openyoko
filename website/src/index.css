@@ -36,6 +36,7 @@ main { position: relative; width: 100%; padding-bottom: var(--page-margin); }
 .topbar nav { display: grid; grid-template-columns: repeat(2, minmax(145px, 1fr)); }
 .topbar nav a { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0 28px; border-left: 1.5px solid var(--color-ink); font-family: var(--font-display); font-size: 1.3rem; letter-spacing: .07em; text-transform: uppercase; transition: background-color .2s; }
 .topbar nav a:hover, .topbar nav a:focus-visible { background: var(--color-orange); }
+.github-stars { display: inline-flex; align-items: center; gap: 5px; padding-left: 10px; border-left: 1px solid rgb(16 19 26 / .28); font-family: var(--font-mono); font-size: .58rem; letter-spacing: .04em; }
 
 .hero { position: relative; display: grid; grid-template-columns: minmax(420px, 1.08fr) minmax(370px, .92fr); min-height: 0; overflow: hidden; border-bottom: 1.5px solid var(--color-ink); background: var(--color-paper); }
 .hero-copy { min-width: 0; align-self: center; padding: clamp(24px, 3.4vw, 54px) clamp(28px, 5vw, 82px); }
@@ -266,6 +267,8 @@ h1 { font-size: clamp(4.8rem, min(7.2vw, 12vh), 7.8rem); line-height: .83; }
   .brand span { font-size: 2.45rem; }
   .topbar nav { grid-template-columns: 1fr; }
   .topbar nav a { padding: 0 18px; font-size: 1.15rem; }
+  .github-nav-link { gap: 7px; }
+  .github-stars { padding-left: 7px; font-size: .52rem; }
   .topbar nav a:first-child { display: none; }
   .hero { grid-template-columns: minmax(0, 1fr); min-height: 0; }
   .hero-copy { padding: 32px 20px 26px; }
