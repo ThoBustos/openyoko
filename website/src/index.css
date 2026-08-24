@@ -58,10 +58,9 @@ h1 { font-size: clamp(4.8rem, min(7.2vw, 12vh), 7.8rem); line-height: .83; }
 .yoko-card img { width: 96%; max-height: 104%; object-fit: contain; object-position: bottom center; filter: drop-shadow(0 0 1px var(--color-ink)); }
 .yoko-panel-footer { border: 1.5px solid var(--color-ink); border-top: 0; background: var(--color-paper); }
 .yoko-panel-footer > p { margin: 0; padding: 10px 14px; font-size: .57rem; line-height: 1.45; }
-.yoko-work { min-height: 38px; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 5px 10px 5px 14px; border-top: 1px solid rgb(16 19 26 / .24); color: #686058; font-size: .43rem; line-height: 1.35; text-transform: uppercase; letter-spacing: .06em; }
-.yoko-work a { width: 94px; height: 28px; display: block; flex: 0 0 auto; overflow: hidden; }
-.yoko-work img { width: 100%; height: 100%; object-fit: cover; }
-.yoko-work a:hover img { opacity: .62; }
+.yoko-work { min-height: 42px; display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 10px; padding: 8px 12px 8px 14px; border-top: 1px solid rgb(16 19 26 / .24); color: #686058; font-size: .44rem; line-height: 1.35; text-transform: uppercase; letter-spacing: .08em; transition: background-color .2s, color .2s; }
+.yoko-work img { width: 88px; height: auto; }
+.yoko-work:hover, .yoko-work:focus-visible { background: var(--color-orange); color: var(--color-ink); }
 
 .provider-rail { display: grid; grid-template-columns: 245px minmax(0, 1fr); border-bottom: 1.5px solid var(--color-ink); background: var(--color-paper); overflow: hidden; }
 .provider-label { display: flex; flex-direction: column; justify-content: center; padding: 10px 22px; border-right: 1.5px solid var(--color-ink); text-transform: uppercase; }

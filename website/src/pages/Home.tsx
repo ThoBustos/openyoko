@@ -6,7 +6,7 @@ import { Marquee } from "@/components/ui/marquee";
 import { ClaudeMark, CursorMark, GoogleMark, GranolaMark, LinearMark, ObsidianMark, OpenAIMark, SlackMark, TeamsMark, TelegramMark, WhatsAppMark } from "@/components/brand-marks";
 import yoko from "@/assets/yoko.webp";
 import mark from "@/assets/openyoko-no-bg.webp";
-import supernalLogo from "@/assets/supernal-logo.png";
+import supernalLogo from "@/assets/supernal.svg";
 import everywhereIcon from "@/assets/system-icons/everywhere.webp";
 import harnessIcon from "@/assets/system-icons/harness.webp";
 import planetIcon from "@/assets/system-icons/planet.webp";
@@ -113,7 +113,7 @@ function Hero() {
           <div className="yoko-card"><img src={yoko} alt="Yoko, an illustrated personal AI assistant" width="1254" height="1254" fetchPriority="high" /></div>
           <div className="yoko-panel-footer">
             <p>One assistant. The same private context, wherever you work.</p>
-            <div className="yoko-work"><span>Currently working with Thomas at</span><a href="https://getsupernal.ai/" target="_blank" rel="noreferrer" aria-label="Supernal AI"><img src={supernalLogo} alt="Supernal" width="1200" height="630" /></a></div>
+            <a className="yoko-work" href="https://getsupernal.ai/" target="_blank" rel="noreferrer" aria-label="Yoko currently works at Supernal AI"><span>Currently at</span><img src={supernalLogo} alt="Supernal" width="677" height="138" /><ArrowUpRight size={13} /></a>
           </div>
         </div>
       </section>
