@@ -101,7 +101,7 @@ function Hero() {
         <div className="hero-copy">
           <span className="eyebrow">Thomas’ open-source personal AI system</span>
           <h1 id="hero-title">Your AI,<br />with you<br />everywhere.</h1>
-          <p>One private vault connects every AI harness—across your devices, tools, work, and life.</p>
+          <p>One private system connects every AI harness—across your devices, tools, work, and life.</p>
           <div className="actions">
             <Button asChild><a href={githubUrl} target="_blank" rel="noreferrer"><Github size={15} /> View on GitHub <ArrowUpRight size={15} /></a></Button>
             <a className="text-link" href="#system">See how it works <ArrowDown size={15} /></a>
@@ -111,7 +111,7 @@ function Hero() {
           <div className="yoko-card-header"><span>Yoko</span><small><i /> Live</small></div>
           <div className="yoko-card"><img src={yoko} alt="Yoko, an illustrated personal AI assistant" width="1254" height="1254" fetchPriority="high" /></div>
           <div className="yoko-panel-footer">
-            <p>One assistant. The same private context, at home and at work.</p>
+            <p>One assistant. The same private context, with you at home and at work.</p>
             <div className="yoko-work"><span>Currently with Thomas at</span><a href="https://getsupernal.ai/" target="_blank" rel="noreferrer">Supernal</a></div>
           </div>
         </div>
