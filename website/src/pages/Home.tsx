@@ -111,7 +111,7 @@ function Hero() {
           <div className="yoko-card-header"><span>Yoko</span><small><i /> Live</small></div>
           <div className="yoko-card"><img src={yoko} alt="Yoko, an illustrated personal AI assistant" width="1254" height="1254" fetchPriority="high" /></div>
           <div className="yoko-panel-footer">
-            <p>One assistant. The same private context, with you at home and at work.</p>
+            <p>One assistant. The same private context, wherever life and work take you.</p>
             <div className="yoko-work"><span>Currently with Thomas at</span><a href="https://getsupernal.ai/" target="_blank" rel="noreferrer">Supernal</a></div>
           </div>
         </div>
