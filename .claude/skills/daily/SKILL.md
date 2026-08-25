@@ -93,10 +93,10 @@ Before running this skill, check:
 2. **GLOBAL_STATE.md is fresh** - Check `last_updated` in `00_SYSTEM/GLOBAL_STATE.md`
    - IF STALE (>3 days): Ask "Your state is {N} days old. Is it still accurate?"
 
-3. **Google Calendar MCP** - Check ALL accounts from GLOBAL_STATE.md
+3. **Calendar MCP(s)** - Check ALL accounts from GLOBAL_STATE.md
    - Read GLOBAL_STATE.md "Default Integrations" table
    - For EACH Google account listed:
-     - Call `get_events` with that email
+     - Use the calendar tool specified for that account in the extension (see Step 0.5) — different accounts may be reachable through different MCP servers (e.g. a dedicated Google Calendar MCP for one account, a general Google Workspace MCP for others)
      - Check both primary AND account-specific calendar IDs (some use email as calendar ID)
    - Also search emails for calendar invites (newer_than:2d)
    - Combine all events into single chronological view
@@ -320,11 +320,10 @@ Don't ask questions, just surface them so user is aware.
 **Fetch calendars:**
 - IF extension loaded (from Step 0.5) with "Pre-Skill Calendar Check" section:
   - Use the calendar configuration from the extension
-  - Follow the exact `user_google_email` and `calendar_id` values specified
-  - Call `get_events` for each calendar_id listed in the extension
+  - For each calendar listed, use the MCP tool and parameters (`user_google_email`/`calendar_id`, or a connector-specific `calendarId`) the extension specifies for that calendar — don't assume every calendar is reachable through the same MCP server
 - OTHERWISE (fallback):
   - Read ALL Google accounts from GLOBAL_STATE.md "Default Integrations" table
-  - For EACH account: call `get_events` for today
+  - For EACH account: call the default calendar tool available for today's events
 
 **Auto-build draft Day Plan table:**
 Using calendar events, generate a DRAFT Day Plan table automatically:
