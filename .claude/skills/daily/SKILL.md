@@ -403,9 +403,9 @@ There is no "Also Today" section in the journal template — don't look for one.
 | From | Task | Source |
 |------|------|--------|
 | Tue | Client proposal (#work) | Top 3 |
-| Mon | Account OS v1: players × accounts × squads (#project) | Deep Work |
-| Mon | 2-3 tactical calls with strats on top accounts (#project) | Deep Work |
-| Mon | Big O's: September strat plan draft (#project) | Deep Work |
+| Mon | Draft the quarterly roadmap doc (#project) | Deep Work |
+| Mon | 2-3 stakeholder check-in calls (#project) | Deep Work |
+| Mon | Write up the ops review notes (#project) | Deep Work |
 
 Which of these should carry into today? (all / pick / none)
 ```
