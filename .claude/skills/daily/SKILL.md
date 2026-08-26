@@ -288,7 +288,7 @@ Tasks can live in multiple places. Scan ALL of these:
 |--------|----------|-----------------|
 | Central TODO | `00_SYSTEM/TODO.md` | All `- [ ]` items |
 | Project Backlogs | `03_PROJECTS/*/_BACKLOG.md` | All `- [ ]` items per project |
-| Journal Embedded | Weekly journal "Also Today" sections | Unchecked `- [ ]` from previous days |
+| Journal Embedded | Weekly journal, previous days' **Top 3** + **Day Plan Deep Work rows** | Unchecked `- [ ]` Top 3 items; Deep Work rows without `✅` in "Working On" |
 | Scan Action Items | `00_SYSTEM/OPS/scans/*.md` | "Actions for Follow-Up" sections from recent scans |
 
 **Why this matters:** Tasks get created in different contexts (during dailies, scans, project work). Without scanning all sources, tasks rot and get forgotten.
@@ -386,28 +386,32 @@ After the reflection above, present a short 3-line synthesis. Don't ask a questi
 
 **2.5. INCOMPLETE TASK ROLLOVER (Previous Days)**
 
-Scan ALL previous days in the current week's journal for incomplete tasks.
+Scan ALL previous days in the current week's journal for incomplete tasks. **This step is mandatory whenever any previous day has a Day Plan table — a day with a Day Plan almost always has open Deep Work rows, and those must be surfaced, not just Top 3 items. If your rollover list only contains Top 3 items, you've likely missed the Day Plan scan.**
 
-**What to scan:**
-- `- [ ]` items in Top 3 sections
-- `- [ ]` items in "Also Today" sections
-- Deep Work rows in Day Plan without `✅` in "Working On" column
+**What to scan, for EVERY previous day in the week that has content:**
+- `- [ ]` items in that day's **Top 3** section
+- **Every row** in that day's **Day Plan** table where `Block` = `Deep Work` and `Working On` is not `✅` (blank, or a partial note, both count as incomplete)
 
-**Present as a specific list:**
+There is no "Also Today" section in the journal template — don't look for one. The two real sources are Top 3 and Day Plan.
+
+**An unfilled Evening section does NOT mean the day's tasks are done.** If a day's evening energy/win/gratitude was never filled in, that only means the close-out never happened — it says nothing about whether the Top 3 or Deep Work rows were completed. Scan and surface them anyway; let the user confirm what actually landed.
+
+**Present as a specific list — always check both sources before writing this table:**
 ```
 📋 **Incomplete from previous days:**
 
 | From | Task | Source |
 |------|------|--------|
-| Thu | Ship landing page (#project) | Also Today |
-| Wed | Client proposal (#work) | Top 3 |
-| Tue | Legal setup task (#personal) | Top 3 |
+| Tue | Client proposal (#work) | Top 3 |
+| Mon | Draft the quarterly roadmap doc (#project) | Deep Work |
+| Mon | 2-3 stakeholder check-in calls (#project) | Deep Work |
+| Mon | Write up the ops review notes (#project) | Deep Work |
 
 Which of these should carry into today? (all / pick / none)
 ```
 
 **Rules:**
-- Only show tasks still marked `- [ ]` (not completed)
+- Only show tasks still marked `- [ ]` (Top 3) or without `✅` (Deep Work) — not completed
 - Group by day, most recent first
 - Deduplicate — if same task appears across multiple days, show it once (earliest day)
 - Don't include items already in today's pre-filled section
@@ -471,7 +475,7 @@ Before finalizing the day, show a consolidated view of ALL open tasks from ALL s
 | #project1 | 5 | Item A, Item B |
 | #project2 | 2 | Item C |
 
-**Journal Embedded** (from previous days' "Also Today")
+**Journal Embedded** (from previous days' Top 3 + Day Plan Deep Work rows)
 | Day | Task | Status |
 |-----|------|--------|
 | Thu | Task from yesterday | Still open |
@@ -494,7 +498,7 @@ Any 🔴 urgent items you need to handle today?
 **Sources to scan (ALL of these):**
 1. `00_SYSTEM/TODO.md` - Central task list
 2. `03_PROJECTS/*/_BACKLOG.md` - Each active project's backlog
-3. Weekly journal "Also Today" sections - Tasks embedded in previous days that weren't completed
+3. Weekly journal, previous days' Top 3 + Day Plan Deep Work rows - tasks embedded in previous days that weren't completed (Deep Work row without `✅`, or Top 3 item still `- [ ]`)
 4. `00_SYSTEM/OPS/scans/*.md` - "Actions for Follow-Up" from recent scans (last 7 days)
 
 **Priority indicators:**
