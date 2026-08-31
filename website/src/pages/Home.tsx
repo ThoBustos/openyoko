@@ -203,7 +203,7 @@ function WhisperSection() {
           <span className="whisper-relationship-plus">+</span>
           <div><img src={mark} alt="" /><strong>OpenYoko</strong></div>
         </div>
-        <div className="whisper-actions"><a className="whisper-primary" href={whisperUrl} target="_blank" rel="noreferrer"><img src={githubIcon} alt="" /> Yoko Whisper repo <WhisperStars /> <ArrowUpRight size={15} /></a><span>Free · MIT licensed</span></div>
+        <div className="whisper-actions"><a className="whisper-primary" href={whisperUrl} target="_blank" rel="noreferrer"><img src={githubIcon} alt="" /> Yoko Whisper repo <WhisperStars /> <ArrowUpRight size={15} /></a></div>
         <small className="whisper-limit"><img src={appleIcon} alt="" /> Beta availability: macOS 14+ on Apple Silicon only</small>
       </div>
       <div className="whisper-demo">
