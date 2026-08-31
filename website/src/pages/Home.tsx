@@ -197,7 +197,7 @@ function WhisperSection() {
     <section id="whisper" className="whisper-section" aria-labelledby="whisper-title">
       <div className="whisper-copy">
         <h2 id="whisper-title">Your voice.<br />Straight to text.</h2>
-        <p>Yoko Whisper is a free, open-source alternative to <a href="https://wisprflow.ai/" target="_blank" rel="noreferrer">Wispr Flow</a> and <a href="https://superwhisper.com/" target="_blank" rel="noreferrer">Superwhisper</a>. Hold a key, speak, and your words appear in the app you are already using without uploading your audio to a transcription service.</p>
+        <p><a href={whisperUrl} target="_blank" rel="noreferrer">Yoko Whisper</a> is a free, open-source alternative to <a href="https://wisprflow.ai/" target="_blank" rel="noreferrer">Wispr Flow</a> and <a href="https://superwhisper.com/" target="_blank" rel="noreferrer">Superwhisper</a>. Hold a key, speak, and your words appear in the app you are already using without uploading your audio to a transcription service.</p>
         <div className="whisper-relationship" aria-label="Yoko Whisper is a separate companion project used with OpenYoko">
           <div><Mic /><strong>Yoko Whisper</strong></div>
           <span className="whisper-relationship-plus">+</span>
