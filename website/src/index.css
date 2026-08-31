@@ -93,6 +93,7 @@ h1 { font-size: clamp(4.8rem, min(7.2vw, 12vh), 7.8rem); line-height: .83; }
 .showcase-label p { max-width: 530px; margin: 0; font-size: .65rem; line-height: 1.6; }
 .use-case-concept { position: relative; border: 1.5px solid var(--color-ink); border-top: 0; background: var(--color-paper); overflow: hidden; }
 .concept-header { display: grid; grid-template-columns: 1.05fr 1.4fr .9fr; align-items: end; gap: clamp(28px, 5vw, 80px); padding: clamp(38px, 5vw, 76px); border-bottom: 1.5px solid var(--color-ink); }
+.bento-concept .concept-header { grid-template-columns: 1.4fr .9fr; }
 .concept-header > span { align-self: start; color: #686058; font-size: .55rem; text-transform: uppercase; letter-spacing: .12em; }
 .concept-header h2 { font-size: clamp(3.4rem, 5.8vw, 6.5rem); line-height: .86; }
 .concept-header p { max-width: 480px; margin: 0; font-size: .68rem; line-height: 1.7; }

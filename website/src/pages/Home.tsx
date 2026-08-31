@@ -170,7 +170,6 @@ function LivingBento() {
   return (
     <section id="system" className="use-case-concept bento-concept" aria-labelledby="bento-title">
       <div className="concept-header">
-        <span>What Yoko does</span>
         <h2>One system. Many jobs.</h2>
         <p>From the next hour to the infrastructure underneath it, Yoko keeps what matters moving.</p>
       </div>
