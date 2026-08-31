@@ -131,6 +131,7 @@ function Hero() {
         <a className="brand" href="#top" aria-label="OpenYoko home"><img src={mark} alt="" width="48" height="48" decoding="async" /><span>OPENYOKO</span></a>
         <nav aria-label="Main navigation">
           <a href="#system">The system</a>
+          <a href="#whisper">Yoko Whisper</a>
           <GitHubLink />
         </nav>
       </header>
@@ -193,7 +194,7 @@ function LivingBento() {
 function WhisperSection() {
   const bars = [18, 35, 58, 31, 72, 46, 88, 53, 28, 66, 42, 78, 49, 24, 55, 34, 18];
   return (
-    <section className="whisper-section" aria-labelledby="whisper-title">
+    <section id="whisper" className="whisper-section" aria-labelledby="whisper-title">
       <div className="whisper-copy">
         <h2 id="whisper-title">Your voice.<br />Straight to text.</h2>
         <p>Yoko Whisper is a free, open-source alternative to <a href="https://wisprflow.ai/" target="_blank" rel="noreferrer">Wispr Flow</a> and <a href="https://superwhisper.com/" target="_blank" rel="noreferrer">Superwhisper</a>. Hold a key, speak, and your words appear in the app you are already using without uploading your audio to a transcription service.</p>
